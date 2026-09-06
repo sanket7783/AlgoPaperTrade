@@ -66,6 +66,18 @@
 
             <div class="control-section">
                 <h3>Groww & OANDA Credentials</h3>
+                
+                <div class="token-status-strip">
+                    <div class="token-pill">
+                        <span class="pill-name">Groww Token:</span>
+                        <span id="growwTokenBadge" class="pill-badge badge-neutral">Checking...</span>
+                    </div>
+                    <div class="token-pill">
+                        <span class="pill-name">OANDA Token:</span>
+                        <span id="oandaTokenBadge" class="pill-badge badge-neutral">Checking...</span>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="growwToken">Groww Access Token</label>
                     <input type="password" id="growwToken" class="input-field" placeholder="Paste Groww Access Token">
@@ -91,7 +103,24 @@
                     <label for="oandaAccount">OANDA Account ID</label>
                     <input type="text" id="oandaAccount" class="input-field" value="101-001-12345678-001">
                 </div>
-                <button id="saveConfigBtn" class="btn btn-secondary">💾 Save & Update Settings</button>
+
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="liveMarketOnlyCheckbox" checked>
+                        <span class="chk-label"><strong>Live Market Only</strong> (Disable Simulation)</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="enforceMarketHoursCheckbox" checked>
+                        <span class="chk-label">Restrict to MCX Market Hours (09:00 - 23:30 IST)</span>
+                    </label>
+                </div>
+
+                <div id="tokenVerifyFeedback" class="verify-feedback" style="display:none;"></div>
+
+                <div class="btn-group-stacked">
+                    <button id="verifyTokensBtn" class="btn btn-secondary">🔍 Test & Verify Tokens</button>
+                    <button id="saveConfigBtn" class="btn btn-primary">💾 Save & Apply Live</button>
+                </div>
             </div>
 
             <div class="sidebar-footer">

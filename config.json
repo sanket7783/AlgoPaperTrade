@@ -7,7 +7,7 @@
         "timeframe": "M5"
     },
     "mcx": {
-        "instrument_name": "MCX_GOLDGUINEA_OCT2026",
+        "instrument_name": "MCX_GOLDGUINEA26OCTFUT",
         "groww_trading_symbol": "GOLDGUINEA26OCTFUT",
         "groww_api_key": "",
         "groww_api_secret": "",
@@ -36,5 +36,7 @@
         "max_lots_per_trade": 1
     },
     "csv_file_path": "trades_log.csv",
-    "update_interval_sec": 2.0
+    "update_interval_sec": 2.0,
+    "live_market_only": true,
+    "enforce_market_hours": true
 }

@@ -56,6 +56,10 @@ async def background_tick_loop():
 
 @app.on_event("startup")
 async def startup_event():
+    try:
+        algo_engine.check_all_tokens()
+    except Exception as e:
+        log_event("WARNING", "SYSTEM", f"Initial token check warning: {e}")
     asyncio.create_task(background_tick_loop())
 
 # REST API Endpoints
@@ -65,6 +69,7 @@ def get_status():
     return {
         "config": algo_engine.config,
         "state": tick_data,
+        "token_status": algo_engine.token_status,
         "trade_history": algo_engine.mcx_engine.trade_history,
         "recent_logs": get_recent_logs(50),
         "available_symbols": algo_engine.groww_client.get_available_symbols()
@@ -81,6 +86,43 @@ def get_groww_symbols():
 def get_logs(limit: int = 50):
     return {"logs": get_recent_logs(limit)}
 
+class TokenVerifyModel(BaseModel):
+    oanda_api_token: Optional[str] = None
+    oanda_account_id: Optional[str] = None
+    oanda_environment: Optional[str] = "practice"
+    groww_access_token: Optional[str] = None
+
+@app.post("/api/tokens/validate")
+def validate_tokens(req: TokenVerifyModel):
+    """
+    Actively checks credentials with live OANDA and Groww servers.
+    """
+    o_tok = req.oanda_api_token if req.oanda_api_token is not None else algo_engine.config.oanda.api_token
+    o_acc = req.oanda_account_id if req.oanda_account_id is not None else algo_engine.config.oanda.account_id
+    o_env = req.oanda_environment if req.oanda_environment is not None else algo_engine.config.oanda.environment
+    g_tok = req.groww_access_token if req.groww_access_token is not None else algo_engine.config.mcx.groww_access_token
+
+    o_valid, o_msg, o_data = algo_engine.oanda_client.validate_token(o_tok, o_acc, o_env)
+    g_valid, g_msg, g_data = algo_engine.groww_client.validate_token(g_tok)
+
+    result = {
+        "oanda": {
+            "valid": o_valid,
+            "message": o_msg,
+            "details": {"currency": o_data.get("account", {}).get("currency")} if o_data else {}
+        },
+        "groww": {
+            "valid": g_valid,
+            "message": g_msg,
+            "details": {"name": g_data.get("name") or g_data.get("userName") or ""} if g_data else {}
+        }
+    }
+    algo_engine.token_status = {
+        "oanda": {"valid": o_valid, "message": o_msg},
+        "groww": {"valid": g_valid, "message": g_msg}
+    }
+    return result
+
 class ConfigUpdateModel(BaseModel):
     oanda_api_token: str
     oanda_account_id: str
@@ -94,6 +136,8 @@ class ConfigUpdateModel(BaseModel):
     take_profit_pct: float = 1.0
     fast_ema: int = 9
     slow_ema: int = 21
+    live_market_only: Optional[bool] = True
+    enforce_market_hours: Optional[bool] = True
 
 @app.post("/api/config")
 def update_config(cfg: ConfigUpdateModel):
@@ -105,6 +149,11 @@ def update_config(cfg: ConfigUpdateModel):
     
     if cfg.groww_access_token is not None:
         current.mcx.groww_access_token = cfg.groww_access_token.strip()
+    
+    if cfg.live_market_only is not None:
+        current.live_market_only = cfg.live_market_only
+    if cfg.enforce_market_hours is not None:
+        current.enforce_market_hours = cfg.enforce_market_hours
     
     # Update symbol and auto-adjust contract specification
     if cfg.groww_trading_symbol:
@@ -149,8 +198,9 @@ def update_config(cfg: ConfigUpdateModel):
     
     return {
         "status": "SUCCESS",
-        "message": f"Contract set to {current.mcx.groww_trading_symbol} with balance ₹{cfg.starting_balance:,.2f}!",
+        "message": f"Settings applied! Live-Only: {current.live_market_only}, Symbol: {current.mcx.groww_trading_symbol}",
         "config": current,
+        "token_status": algo_engine.token_status,
         "new_balance": algo_engine.mcx_engine.account_balance
     }
 

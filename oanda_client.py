@@ -3,7 +3,7 @@ import random
 import requests
 import pandas as pd
 from datetime import datetime, timedelta
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 from app_logger import log_event
 
 class OandaClient:
@@ -29,13 +29,63 @@ class OandaClient:
         self._simulated_price = 2510.50
         self._simulated_trend = 0.05
 
+    def update_credentials(self, api_token: str, account_id: str, environment: str = "practice"):
+        self.api_token = api_token.strip() if api_token else ""
+        self.account_id = account_id.strip() if account_id else ""
+        self.environment = environment.lower()
+        if self.environment == "live":
+            self.base_url = "https://api-fxtrade.oanda.com/v3"
+        else:
+            self.base_url = "https://api-fxpractice.oanda.com/v3"
+        self.headers = {
+            "Authorization": f"Bearer {self.api_token}",
+            "Content-Type": "application/json"
+        }
+
     @property
     def is_live_api_active(self) -> bool:
         return bool(self.api_token and self.api_token != "DEMO_TOKEN_PLACEHOLDER" and len(self.api_token) > 10)
 
-    def fetch_candles(self, instrument: str = "XAU_USD", granularity: str = "M5", count: int = 100) -> pd.DataFrame:
+    def validate_token(self, api_token: Optional[str] = None, account_id: Optional[str] = None, environment: Optional[str] = None) -> Tuple[bool, str, Dict[str, Any]]:
         """
-        Fetch OHLCV candle data from OANDA API or generate realistic simulated candles.
+        Actively checks if the provided OANDA token and account ID are valid with OANDA v20 API.
+        """
+        tok = (api_token if api_token is not None else self.api_token).strip()
+        acc = (account_id if account_id is not None else self.account_id).strip()
+        env = (environment if environment is not None else self.environment).lower().strip()
+
+        if not tok or tok == "DEMO_TOKEN_PLACEHOLDER":
+            return False, "OANDA API token is missing or set to placeholder", {}
+
+        base_url = "https://api-fxtrade.oanda.com/v3" if env == "live" else "https://api-fxpractice.oanda.com/v3"
+
+        try:
+            headers = {
+                "Authorization": f"Bearer {tok}",
+                "Content-Type": "application/json"
+            }
+            if acc and acc != "101-001-12345678-001":
+                url = f"{base_url}/accounts/{acc}/summary"
+            else:
+                url = f"{base_url}/accounts"
+
+            res = requests.get(url, headers=headers, timeout=6)
+            if res.status_code == 200:
+                data = res.json()
+                return True, "OANDA Token and Account are VALID (Authenticated)", data
+            elif res.status_code in [401, 403]:
+                return False, f"OANDA Authentication Failed ({res.status_code}): Invalid or Expired Token", {}
+            elif res.status_code == 404:
+                return False, f"OANDA Account ID '{self.account_id}' not found", {}
+            else:
+                return False, f"OANDA Error (HTTP {res.status_code}): {res.text[:120]}", {}
+        except Exception as e:
+            return False, f"Connection to OANDA Failed: {str(e)}", {}
+
+    def fetch_candles(self, instrument: str = "XAU_USD", granularity: str = "M5", count: int = 100, live_only: bool = True) -> Optional[pd.DataFrame]:
+        """
+        Fetch OHLCV candle data from OANDA API.
+        If live_only is True, returns None on failure instead of generating fake simulated candles.
         """
         if self.is_live_api_active:
             try:
@@ -56,21 +106,31 @@ class OandaClient:
                             "close": float(mid.get("c")),
                             "volume": int(c.get("volume", 0))
                         })
-                    df = pd.DataFrame(records)
-                    df['time'] = pd.to_datetime(df['time'])
-                    log_event("INFO", "POLLING", f"OANDA API Poll: Fetched {len(df)} candles for {instrument} ({granularity}) | Latest Close: ${df['close'].iloc[-1]:.2f}")
-                    return df
+                    if records:
+                        df = pd.DataFrame(records)
+                        df['time'] = pd.to_datetime(df['time'])
+                        log_event("INFO", "POLLING", f"OANDA API Poll: Fetched {len(df)} candles for {instrument} ({granularity}) | Latest Close: ${df['close'].iloc[-1]:.2f}")
+                        return df
+                elif res.status_code in [401, 403]:
+                    log_event("ERROR", "POLLING", f"OANDA API Unauthorized (HTTP {res.status_code}). Token is invalid or expired.")
+                else:
+                    log_event("WARNING", "POLLING", f"OANDA API returned HTTP {res.status_code}: {res.text[:100]}")
             except Exception as e:
-                log_event("WARNING", "POLLING", f"OANDA API Request failed: {e}. Using fallback simulation.")
+                log_event("WARNING", "POLLING", f"OANDA API Request failed: {e}")
 
-        # Fallback Simulation Mode
+        if live_only:
+            log_event("WARNING", "POLLING", f"Live Market Only: OANDA live candles unavailable for {instrument} ({granularity}). Simulation blocked.")
+            return None
+
+        # Fallback Simulation Mode (Only when live_only is False)
         df = self._generate_simulated_candles(instrument, granularity, count)
         log_event("INFO", "POLLING", f"OANDA Poll (Demo Mode): Fetched {len(df)} candles for {instrument} ({granularity}) | Latest Price: ${df['close'].iloc[-1]:.2f}")
         return df
 
-    def fetch_latest_price(self, instrument: str = "XAU_USD") -> float:
+    def fetch_latest_price(self, instrument: str = "XAU_USD", live_only: bool = True) -> Optional[float]:
         """
         Fetch the current mid price for XAU_USD.
+        If live_only is True, returns None on failure instead of generating fake simulated price.
         """
         if self.is_live_api_active:
             try:
@@ -85,6 +145,9 @@ class OandaClient:
                         return price
             except Exception:
                 pass
+
+        if live_only:
+            return None
 
         noise = random.gauss(0, 0.45)
         self._simulated_price = max(1800.0, self._simulated_price + self._simulated_trend + noise)

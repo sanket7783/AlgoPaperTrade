@@ -97,6 +97,30 @@ class GrowwMCXClient:
             self.is_authenticated = False
             self.groww_api = None
 
+    def validate_token(self, token: Optional[str] = None) -> Tuple[bool, str, Dict[str, Any]]:
+        """
+        Actively checks if the provided Groww access token is valid by querying the Groww user profile.
+        """
+        target_token = (token or self.access_token).strip() if (token or self.access_token) else ""
+        if not GROWW_SDK_AVAILABLE:
+            return False, "growwapi library is not installed in the environment", {}
+        if not target_token:
+            return False, "Groww access token is missing or empty", {}
+
+        try:
+            temp_api = GrowwAPI(token=target_token)
+            profile = temp_api.get_user_profile()
+            name = ""
+            if isinstance(profile, dict):
+                name = profile.get("name") or profile.get("userName") or profile.get("email") or ""
+            msg = f"Groww Token is VALID (User: {name})" if name else "Groww Token is VALID (Authenticated)"
+            return True, msg, profile if isinstance(profile, dict) else {}
+        except Exception as e:
+            err_str = str(e)
+            if "expired" in err_str.lower() or "invalid" in err_str.lower() or "authentication" in err_str.lower():
+                return False, "Groww Authentication Failed: Token has expired or is invalid.", {}
+            return False, f"Groww Verification Error: {err_str}", {}
+
     def get_available_symbols(self) -> List[Dict[str, Any]]:
         """
         Returns selectable MCX Gold commodity contracts.

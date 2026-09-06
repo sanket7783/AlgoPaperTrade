@@ -118,8 +118,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.mcx_source) {
             const badge = document.getElementById("mcxSourceBadge");
             if (badge) {
-                badge.innerText = data.mcx_source === 'GROWW_LIVE_API' ? 'GROWW LIVE' : 'DERIVED';
+                if (data.mcx_source === 'GROWW_LIVE_API') {
+                    badge.innerText = 'GROWW LIVE';
+                    badge.style.color = '#10B981';
+                } else if (data.mcx_source === 'GROWW_UNAVAILABLE') {
+                    badge.innerText = 'GROWW OFFLINE';
+                    badge.style.color = '#EF4444';
+                } else {
+                    badge.innerText = 'DERIVED';
+                    badge.style.color = '#E5C158';
+                }
             }
+        }
+
+        if (data.token_status) {
+            updateTokenBadges(data.token_status);
         }
 
         if (data.timeframe) {
@@ -212,6 +225,34 @@ document.addEventListener("DOMContentLoaded", () => {
         container.scrollTop = container.scrollHeight;
     }
 
+    function updateTokenBadges(tokenStatus) {
+        const growwBadge = document.getElementById("growwTokenBadge");
+        const oandaBadge = document.getElementById("oandaTokenBadge");
+        if (!tokenStatus) return;
+
+        if (tokenStatus.groww && growwBadge) {
+            if (tokenStatus.groww.valid) {
+                growwBadge.className = "pill-badge badge-success";
+                growwBadge.innerText = "Active / Valid";
+            } else {
+                growwBadge.className = "pill-badge badge-error";
+                growwBadge.innerText = (tokenStatus.groww.message && tokenStatus.groww.message.includes("missing")) ? "Not Set" : "Invalid / Expired";
+            }
+            growwBadge.title = tokenStatus.groww.message || "";
+        }
+
+        if (tokenStatus.oanda && oandaBadge) {
+            if (tokenStatus.oanda.valid) {
+                oandaBadge.className = "pill-badge badge-success";
+                oandaBadge.innerText = "Active / Valid";
+            } else {
+                oandaBadge.className = "pill-badge badge-error";
+                oandaBadge.innerText = (tokenStatus.oanda.message && tokenStatus.oanda.message.includes("missing")) ? "Not Set" : "Invalid / Expired";
+            }
+            oandaBadge.title = tokenStatus.oanda.message || "";
+        }
+    }
+
     async function loadInitialStatus() {
         try {
             const res = await fetch("/api/status");
@@ -229,9 +270,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (cfg.mcx.groww_access_token) {
                     document.getElementById("growwToken").value = cfg.mcx.groww_access_token;
                 }
+                if (document.getElementById("liveMarketOnlyCheckbox") && cfg.live_market_only !== undefined) {
+                    document.getElementById("liveMarketOnlyCheckbox").checked = cfg.live_market_only;
+                }
+                if (document.getElementById("enforceMarketHoursCheckbox") && cfg.enforce_market_hours !== undefined) {
+                    document.getElementById("enforceMarketHoursCheckbox").checked = cfg.enforce_market_hours;
+                }
                 await loadSymbols(cfg.mcx.groww_trading_symbol);
             } else {
                 await loadSymbols();
+            }
+
+            if (data.token_status) {
+                updateTokenBadges(data.token_status);
             }
 
             if (data.trade_history) {
@@ -248,6 +299,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     loadInitialStatus();
+
+    // Verify Tokens Action
+    const verifyBtn = document.getElementById("verifyTokensBtn");
+    if (verifyBtn) {
+        verifyBtn.addEventListener("click", async () => {
+            const feedback = document.getElementById("tokenVerifyFeedback");
+            feedback.style.display = "block";
+            feedback.className = "verify-feedback";
+            feedback.innerHTML = "<em>⏳ Testing credentials with live OANDA and Groww servers...</em>";
+
+            const payload = {
+                oanda_api_token: document.getElementById("oandaToken").value,
+                oanda_account_id: document.getElementById("oandaAccount").value,
+                oanda_environment: "practice",
+                groww_access_token: document.getElementById("growwToken").value
+            };
+
+            try {
+                const res = await fetch("/api/tokens/validate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                updateTokenBadges(data);
+
+                const oandaOk = data.oanda && data.oanda.valid;
+                const growwOk = data.groww && data.groww.valid;
+
+                let html = `<div><strong>OANDA:</strong> ${data.oanda.message}</div>`;
+                html += `<div><strong>Groww:</strong> ${data.groww.message}</div>`;
+
+                if (oandaOk && growwOk) {
+                    feedback.className = "verify-feedback success";
+                    html += `<div style="margin-top:6px; font-weight:bold;">🎉 Both live broker connections verified successfully!</div>`;
+                } else {
+                    feedback.className = "verify-feedback error";
+                    html += `<div style="margin-top:6px; font-weight:bold;">⚠️ Token check reported errors. See details above.</div>`;
+                }
+                feedback.innerHTML = html;
+            } catch (err) {
+                feedback.className = "verify-feedback error";
+                feedback.innerHTML = `<div>Verification failed: ${err}</div>`;
+            }
+        });
+    }
 
     function renderTradeLogTable(trades) {
         const tbody = document.getElementById("tradeLogBody");
@@ -292,6 +389,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.trade_history) {
                 renderTradeLogTable(data.trade_history);
             }
+            if (data.token_status) {
+                updateTokenBadges(data.token_status);
+            }
         } catch (e) {}
     }, 3000);
 
@@ -309,7 +409,9 @@ document.addEventListener("DOMContentLoaded", () => {
             selected_strategy: document.getElementById("strategySelect").value,
             starting_balance: balanceVal,
             stop_loss_pct: parseFloat(document.getElementById("slInput").value),
-            take_profit_pct: parseFloat(document.getElementById("tpInput").value)
+            take_profit_pct: parseFloat(document.getElementById("tpInput").value),
+            live_market_only: document.getElementById("liveMarketOnlyCheckbox") ? document.getElementById("liveMarketOnlyCheckbox").checked : true,
+            enforce_market_hours: document.getElementById("enforceMarketHoursCheckbox") ? document.getElementById("enforceMarketHoursCheckbox").checked : true
         };
 
         try {
@@ -323,9 +425,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("totalEquity").innerText = `₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
                 document.getElementById("realizedPnl").innerText = "₹0.00";
                 document.getElementById("realizedPnl").className = "value neutral";
+                if (data.token_status) {
+                    updateTokenBadges(data.token_status);
+                }
                 
-                const tokenStatus = payload.groww_access_token ? "Configured & Active" : "Not Provided";
-                alert(`✅ Contract & Settings Saved!\n\n• Selected Contract: ${selectedSym}\n• Account Balance reset to: ₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}\n• Groww Token: ${tokenStatus}\n• Strategy: ${payload.selected_strategy}\n\nThe engine updated live without needing a restart!`);
+                const growwStatus = payload.groww_access_token ? "Configured" : "Not Provided";
+                const modeStr = payload.live_market_only ? "Strict Live Only (Simulation Disabled)" : "Simulation Allowed";
+                alert(`✅ Contract & Settings Saved!\n\n• Contract: ${selectedSym}\n• Mode: ${modeStr}\n• Account Balance reset to: ₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}\n• Groww Token: ${growwStatus}\n• Strategy: ${payload.selected_strategy}\n\nThe engine updated live without needing a restart!`);
             }
         } catch (err) {
             alert("Failed to update settings: " + err);

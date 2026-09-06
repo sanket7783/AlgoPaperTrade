@@ -72,7 +72,7 @@ class TestAlgoPaperTrader(unittest.TestCase):
 
     def test_strategies_generation(self):
         client = OandaClient()
-        df = client.fetch_candles(granularity="M5", count=50)
+        df = client.fetch_candles(granularity="M5", count=50, live_only=False)
         self.assertEqual(len(df), 50)
 
         ema_strat = EMACrossoverStrategy(self.config.strategy)
@@ -98,6 +98,26 @@ class TestAlgoPaperTrader(unittest.TestCase):
         self.assertIn("mcx_price", tick_data)
         self.assertIn("signal", tick_data)
         self.assertIn("engine_status", tick_data)
+
+    def test_token_validation(self):
+        oanda_client = OandaClient(api_token="DEMO_TOKEN_PLACEHOLDER")
+        o_valid, o_msg, _ = oanda_client.validate_token()
+        self.assertFalse(o_valid)
+        self.assertIn("placeholder", o_msg.lower())
+
+        from groww_mcx_client import GrowwMCXClient
+        groww_client = GrowwMCXClient(access_token="")
+        g_valid, g_msg, _ = groww_client.validate_token()
+        self.assertFalse(g_valid)
+        self.assertIn("missing", g_msg.lower())
+
+    def test_live_only_blocks_synthetic_trades(self):
+        self.config.live_market_only = True
+        engine = AlgoTradingEngine(self.config)
+        tick = engine.process_tick()
+        self.assertEqual(tick["signal"]["signal"], "NEUTRAL")
+        self.assertIn("Live Market Only", tick["signal"]["reason"])
+        self.assertIsNone(tick["executed_trade_event"])
 
 if __name__ == "__main__":
     unittest.main()

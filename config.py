@@ -55,6 +55,8 @@ class AppConfig:
     strategy: StrategyConfig = field(default_factory=StrategyConfig)
     csv_file_path: str = "trades_log.csv"
     update_interval_sec: float = 2.0  # Market simulation tick interval in seconds
+    live_market_only: bool = True     # When True, strictly blocks synthetic simulation; trades only on live broker data
+    enforce_market_hours: bool = True # When True, only executes trades during MCX market hours (09:00 - 23:30 IST)
 
     def save_to_file(self, filepath: str = "config.json"):
         with open(filepath, "w") as f:
@@ -70,7 +72,9 @@ class AppConfig:
                     mcx=McxConfig(**data.get("mcx", {})),
                     strategy=StrategyConfig(**data.get("strategy", {})),
                     csv_file_path=data.get("csv_file_path", "trades_log.csv"),
-                    update_interval_sec=data.get("update_interval_sec", 2.0)
+                    update_interval_sec=data.get("update_interval_sec", 2.0),
+                    live_market_only=data.get("live_market_only", True),
+                    enforce_market_hours=data.get("enforce_market_hours", True)
                 )
                 # Fall back to env variables if json values are empty
                 if not cfg.mcx.groww_access_token and os.getenv("GROWW_ACCESS_TOKEN"):

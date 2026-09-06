@@ -603,3 +603,101 @@ body {
     color: var(--gold-primary);
     border: 1px solid rgba(229, 193, 88, 0.4);
 }
+
+/* Token Status Strip & Badges */
+.token-status-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.token-pill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.pill-name {
+    color: var(--text-muted);
+}
+
+.pill-badge {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34D399;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-neutral {
+    background: rgba(138, 153, 173, 0.15);
+    color: var(--text-muted);
+    border: 1px solid rgba(138, 153, 173, 0.3);
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0 14px 0;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    accent-color: var(--gold-primary);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.verify-feedback {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.verify-feedback.success {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6EE7B7;
+}
+
+.verify-feedback.error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #FCA5A5;
+}
+
+.btn-group-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
