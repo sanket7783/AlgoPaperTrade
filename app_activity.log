@@ -1,0 +1,931 @@
+[2026-09-06 11:43:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2542.07
+[2026-09-06 11:43:27] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹77,000.00 (Strategy: TEST_STRATEGY)
+[2026-09-06 11:43:27] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹77,000.00 | SL: ₹76,230.00 | TP: ₹78,540.00
+[2026-09-06 11:43:27] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): BUY 1 Lot(s) @ Entry ₹77,000.00 -> Exit ₹77,500.00 | Trade PnL: ₹+5,000.00 | New Account Balance: ₹505,000.00
+[2026-09-06 11:43:27] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹+5,000.00 written to test_trades.csv
+[2026-09-06 11:43:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 50 candles for XAU_USD (M5) | Latest Price: $2508.87
+[2026-09-06 11:43:41] [INFO] [SYSTEM] Background polling & trading loop started.
+[2026-09-06 11:43:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2524.16
+[2026-09-06 11:43:52] [INFO] [SYSTEM] Background polling & trading loop started.
+[2026-09-06 11:43:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2523.85
+[2026-09-06 11:43:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2529.55
+[2026-09-06 11:43:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2528.97
+[2026-09-06 11:43:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2534.60
+[2026-09-06 11:44:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2545.22
+[2026-09-06 11:44:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2560.58
+[2026-09-06 11:44:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2576.26
+[2026-09-06 11:44:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2552.19
+[2026-09-06 11:44:07] [INFO] [SIGNAL] Simulated Auto Signal Triggered from UI: BUY
+[2026-09-06 11:44:07] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹78,793.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:44:07] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹78,793.00 | SL: ₹78,399.04 | TP: ₹79,580.93
+[2026-09-06 11:44:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2554.31
+[2026-09-06 11:44:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2551.70
+[2026-09-06 11:44:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2537.01
+[2026-09-06 11:44:12] [WARNING] [RISK] STOP LOSS TRIGGERED for BUY position @ ₹78,324.00 (SL Target: ₹78,399.04)
+[2026-09-06 11:44:12] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): BUY 1 Lot(s) @ Entry ₹78,793.00 -> Exit ₹78,324.00 | Trade PnL: ₹-4,690.00 | New Account Balance: ₹495,310.00
+[2026-09-06 11:44:12] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹-4,690.00 written to trades_log.csv
+[2026-09-06 11:44:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2533.83
+[2026-09-06 11:44:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2505.51
+[2026-09-06 11:44:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2514.78
+[2026-09-06 11:44:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2508.88
+[2026-09-06 11:44:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2505.50
+[2026-09-06 11:44:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2503.29
+[2026-09-06 11:44:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2502.21
+[2026-09-06 11:44:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2499.59
+[2026-09-06 11:44:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2484.24
+[2026-09-06 11:44:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2477.08
+[2026-09-06 11:44:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2481.28
+[2026-09-06 11:44:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2490.37
+[2026-09-06 11:44:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2501.20
+[2026-09-06 11:44:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2491.20
+[2026-09-06 11:44:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2476.14
+[2026-09-06 11:44:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2466.02
+[2026-09-06 11:44:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2499.02
+[2026-09-06 11:44:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2496.12
+[2026-09-06 11:44:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2491.14
+[2026-09-06 11:44:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2498.51
+[2026-09-06 11:44:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2502.13
+[2026-09-06 11:44:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2483.57
+[2026-09-06 11:44:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2478.29
+[2026-09-06 11:45:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2474.23
+[2026-09-06 11:45:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2467.69
+[2026-09-06 11:45:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2454.59
+[2026-09-06 11:45:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2450.61
+[2026-09-06 11:45:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2449.90
+[2026-09-06 11:45:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2453.45
+[2026-09-06 11:45:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2459.77
+[2026-09-06 11:45:13] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹75,940.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:45:13] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹75,940.00 | SL: ₹75,560.30 | TP: ₹76,699.40
+[2026-09-06 11:45:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2453.25
+[2026-09-06 11:45:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2458.95
+[2026-09-06 11:45:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2456.36
+[2026-09-06 11:45:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2464.78
+[2026-09-06 11:45:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2453.80
+[2026-09-06 11:45:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2466.49
+[2026-09-06 11:45:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2479.03
+[2026-09-06 11:45:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2472.20
+[2026-09-06 11:45:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2455.25
+[2026-09-06 11:45:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2467.23
+[2026-09-06 11:45:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2457.31
+[2026-09-06 11:45:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2456.61
+[2026-09-06 11:45:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2471.96
+[2026-09-06 11:45:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2452.73
+[2026-09-06 11:45:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2426.24
+[2026-09-06 11:45:43] [WARNING] [RISK] STOP LOSS TRIGGERED for BUY position @ ₹74,905.00 (SL Target: ₹75,560.30)
+[2026-09-06 11:45:43] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): BUY 1 Lot(s) @ Entry ₹75,940.00 -> Exit ₹74,905.00 | Trade PnL: ₹-10,350.00 | New Account Balance: ₹484,960.00
+[2026-09-06 11:45:43] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹-10,350.00 written to trades_log.csv
+[2026-09-06 11:45:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2441.15
+[2026-09-06 11:45:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2429.76
+[2026-09-06 11:45:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2423.93
+[2026-09-06 11:45:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2437.78
+[2026-09-06 11:45:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2431.05
+[2026-09-06 11:45:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2403.19
+[2026-09-06 11:45:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2405.40
+[2026-09-06 11:45:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2395.25
+[2026-09-06 11:46:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2372.83
+[2026-09-06 11:46:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2366.89
+[2026-09-06 11:46:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2367.45
+[2026-09-06 11:46:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2360.43
+[2026-09-06 11:46:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2363.71
+[2026-09-06 11:46:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2346.84
+[2026-09-06 11:46:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2343.56
+[2026-09-06 11:46:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2326.89
+[2026-09-06 11:46:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2340.21
+[2026-09-06 11:46:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2357.85
+[2026-09-06 11:46:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2346.49
+[2026-09-06 11:46:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2335.49
+[2026-09-06 11:46:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2347.50
+[2026-09-06 11:46:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2359.53
+[2026-09-06 11:46:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2335.94
+[2026-09-06 11:46:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2326.95
+[2026-09-06 11:46:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2347.87
+[2026-09-06 11:46:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2355.42
+[2026-09-06 11:46:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2344.51
+[2026-09-06 11:46:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2330.20
+[2026-09-06 11:46:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2345.72
+[2026-09-06 11:46:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2340.24
+[2026-09-06 11:46:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2340.81
+[2026-09-06 11:46:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2340.98
+[2026-09-06 11:46:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2333.82
+[2026-09-06 11:46:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2365.18
+[2026-09-06 11:46:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2395.55
+[2026-09-06 11:46:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2373.37
+[2026-09-06 11:46:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2391.39
+[2026-09-06 11:46:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2409.38
+[2026-09-06 11:47:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2415.52
+[2026-09-06 11:47:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2396.68
+[2026-09-06 11:47:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2391.20
+[2026-09-06 11:47:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2388.41
+[2026-09-06 11:47:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2395.38
+[2026-09-06 11:47:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2414.42
+[2026-09-06 11:47:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2403.26
+[2026-09-06 11:47:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2410.25
+[2026-09-06 11:47:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2441.37
+[2026-09-06 11:47:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2448.96
+[2026-09-06 11:47:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2439.79
+[2026-09-06 11:47:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2439.91
+[2026-09-06 11:47:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2454.88
+[2026-09-06 11:47:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2442.68
+[2026-09-06 11:47:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2431.16
+[2026-09-06 11:47:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2429.47
+[2026-09-06 11:47:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2440.44
+[2026-09-06 11:47:34] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹75,343.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:47:34] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹75,343.00 | SL: ₹75,719.71 | TP: ₹74,589.57
+[2026-09-06 11:47:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2455.72
+[2026-09-06 11:47:36] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹75,815.00 (SL Target: ₹75,719.71)
+[2026-09-06 11:47:36] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹75,343.00 -> Exit ₹75,815.00 | Trade PnL: ₹-4,720.00 | New Account Balance: ₹480,240.00
+[2026-09-06 11:47:36] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-4,720.00 written to trades_log.csv
+[2026-09-06 11:47:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2454.23
+[2026-09-06 11:47:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2484.83
+[2026-09-06 11:47:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2490.16
+[2026-09-06 11:47:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2508.99
+[2026-09-06 11:47:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2524.27
+[2026-09-06 11:47:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2511.96
+[2026-09-06 11:47:48] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹77,551.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:47:48] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹77,551.00 | SL: ₹77,938.76 | TP: ₹76,775.49
+[2026-09-06 11:47:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2518.70
+[2026-09-06 11:47:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2554.22
+[2026-09-06 11:47:52] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹78,856.00 (SL Target: ₹77,938.76)
+[2026-09-06 11:47:52] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹77,551.00 -> Exit ₹78,856.00 | Trade PnL: ₹-13,050.00 | New Account Balance: ₹467,190.00
+[2026-09-06 11:47:52] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-13,050.00 written to trades_log.csv
+[2026-09-06 11:47:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2558.38
+[2026-09-06 11:47:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2582.40
+[2026-09-06 11:47:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2558.49
+[2026-09-06 11:48:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2577.93
+[2026-09-06 11:48:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2583.90
+[2026-09-06 11:48:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2575.66
+[2026-09-06 11:48:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2555.73
+[2026-09-06 11:48:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2562.84
+[2026-09-06 11:48:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2570.48
+[2026-09-06 11:48:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2578.21
+[2026-09-06 11:48:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2571.11
+[2026-09-06 11:48:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2594.23
+[2026-09-06 11:48:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2594.37
+[2026-09-06 11:48:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2584.36
+[2026-09-06 11:48:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2578.75
+[2026-09-06 11:48:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2573.96
+[2026-09-06 11:48:24] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹79,465.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:48:24] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹79,465.00 | SL: ₹79,862.32 | TP: ₹78,670.35
+[2026-09-06 11:48:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2579.16
+[2026-09-06 11:48:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2604.58
+[2026-09-06 11:48:28] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹80,411.00 (SL Target: ₹79,862.32)
+[2026-09-06 11:48:28] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹79,465.00 -> Exit ₹80,411.00 | Trade PnL: ₹-9,460.00 | New Account Balance: ₹457,730.00
+[2026-09-06 11:48:28] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-9,460.00 written to trades_log.csv
+[2026-09-06 11:48:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2618.77
+[2026-09-06 11:48:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2630.44
+[2026-09-06 11:48:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2598.03
+[2026-09-06 11:48:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2597.46
+[2026-09-06 11:48:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2609.26
+[2026-09-06 11:48:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2603.35
+[2026-09-06 11:48:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2636.15
+[2026-09-06 11:48:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2642.60
+[2026-09-06 11:48:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2656.02
+[2026-09-06 11:48:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2656.23
+[2026-09-06 11:48:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2645.77
+[2026-09-06 11:48:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2653.96
+[2026-09-06 11:48:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2670.44
+[2026-09-06 11:48:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2671.65
+[2026-09-06 11:48:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2642.27
+[2026-09-06 11:49:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2623.27
+[2026-09-06 11:49:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2632.46
+[2026-09-06 11:49:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2611.28
+[2026-09-06 11:49:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2614.00
+[2026-09-06 11:49:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2612.32
+[2026-09-06 11:49:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2610.51
+[2026-09-06 11:49:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2596.04
+[2026-09-06 11:49:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2600.63
+[2026-09-06 11:49:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2612.50
+[2026-09-06 11:49:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2590.77
+[2026-09-06 11:49:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2575.54
+[2026-09-06 11:49:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2551.86
+[2026-09-06 11:49:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2562.96
+[2026-09-06 11:49:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2551.47
+[2026-09-06 11:49:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2543.78
+[2026-09-06 11:49:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2550.37
+[2026-09-06 11:49:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2557.25
+[2026-09-06 11:49:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2537.44
+[2026-09-06 11:49:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2568.55
+[2026-09-06 11:49:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2567.58
+[2026-09-06 11:49:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2583.01
+[2026-09-06 11:49:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2561.31
+[2026-09-06 11:49:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2575.43
+[2026-09-06 11:49:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2564.65
+[2026-09-06 11:49:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2561.72
+[2026-09-06 11:49:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2541.87
+[2026-09-06 11:49:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2546.52
+[2026-09-06 11:49:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2539.10
+[2026-09-06 11:49:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2563.28
+[2026-09-06 11:49:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2550.31
+[2026-09-06 11:50:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2566.23
+[2026-09-06 11:50:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2589.25
+[2026-09-06 11:50:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2589.92
+[2026-09-06 11:50:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2586.50
+[2026-09-06 11:50:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2591.09
+[2026-09-06 11:50:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2597.07
+[2026-09-06 11:50:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2593.84
+[2026-09-06 11:50:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2591.09
+[2026-09-06 11:50:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2581.65
+[2026-09-06 11:50:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2560.14
+[2026-09-06 11:50:19] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹79,039.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:50:19] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹79,039.00 | SL: ₹78,643.80 | TP: ₹79,829.39
+[2026-09-06 11:50:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2585.87
+[2026-09-06 11:50:21] [INFO] [RISK] TAKE PROFIT TRIGGERED for BUY position @ ₹79,833.00 (TP Target: ₹79,829.39)
+[2026-09-06 11:50:21] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): BUY 1 Lot(s) @ Entry ₹79,039.00 -> Exit ₹79,833.00 | Trade PnL: ₹+7,940.00 | New Account Balance: ₹465,670.00
+[2026-09-06 11:50:21] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹+7,940.00 written to trades_log.csv
+[2026-09-06 11:50:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2584.36
+[2026-09-06 11:50:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2605.36
+[2026-09-06 11:50:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2623.93
+[2026-09-06 11:50:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2620.08
+[2026-09-06 11:50:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2613.84
+[2026-09-06 11:50:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2627.21
+[2026-09-06 11:50:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2607.31
+[2026-09-06 11:50:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2612.04
+[2026-09-06 11:50:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2605.39
+[2026-09-06 11:50:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2585.65
+[2026-09-06 11:50:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2613.74
+[2026-09-06 11:50:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2607.28
+[2026-09-06 11:50:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2587.53
+[2026-09-06 11:50:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2600.88
+[2026-09-06 11:50:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2627.89
+[2026-09-06 11:50:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2638.03
+[2026-09-06 11:50:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2648.18
+[2026-09-06 11:50:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2655.89
+[2026-09-06 11:50:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2654.69
+[2026-09-06 11:50:59] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹81,958.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:50:59] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹81,958.00 | SL: ₹82,367.79 | TP: ₹81,138.42
+[2026-09-06 11:51:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2668.07
+[2026-09-06 11:51:01] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹82,371.00 (SL Target: ₹82,367.79)
+[2026-09-06 11:51:01] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹81,958.00 -> Exit ₹82,371.00 | Trade PnL: ₹-4,130.00 | New Account Balance: ₹461,540.00
+[2026-09-06 11:51:01] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-4,130.00 written to trades_log.csv
+[2026-09-06 11:51:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2675.07
+[2026-09-06 11:51:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.76
+[2026-09-06 11:51:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2706.27
+[2026-09-06 11:51:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2715.73
+[2026-09-06 11:51:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2723.24
+[2026-09-06 11:51:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.09
+[2026-09-06 11:51:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.72
+[2026-09-06 11:51:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2738.57
+[2026-09-06 11:51:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2742.11
+[2026-09-06 11:51:19] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹84,656.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:51:19] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹84,656.00 | SL: ₹85,079.28 | TP: ₹83,809.44
+[2026-09-06 11:51:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2723.39
+[2026-09-06 11:51:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.35
+[2026-09-06 11:51:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2726.26
+[2026-09-06 11:51:25] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹84,167.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:51:25] [WARNING] [ORDER] Order Rejected: Already holding active SELL position.
+[2026-09-06 11:51:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2701.25
+[2026-09-06 11:51:27] [INFO] [RISK] TAKE PROFIT TRIGGERED for SELL position @ ₹83,395.00 (TP Target: ₹83,809.44)
+[2026-09-06 11:51:27] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): SELL 1 Lot(s) @ Entry ₹84,656.00 -> Exit ₹83,395.00 | Trade PnL: ₹+12,610.00 | New Account Balance: ₹474,150.00
+[2026-09-06 11:51:27] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹+12,610.00 written to trades_log.csv
+[2026-09-06 11:51:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2694.02
+[2026-09-06 11:51:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2673.31
+[2026-09-06 11:51:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2682.09
+[2026-09-06 11:51:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2675.25
+[2026-09-06 11:51:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2682.08
+[2026-09-06 11:51:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2693.68
+[2026-09-06 11:51:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2678.73
+[2026-09-06 11:51:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2675.84
+[2026-09-06 11:51:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2664.46
+[2026-09-06 11:51:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2664.29
+[2026-09-06 11:51:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2647.44
+[2026-09-06 11:51:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2637.16
+[2026-09-06 11:51:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2640.52
+[2026-09-06 11:51:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2634.79
+[2026-09-06 11:51:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2624.81
+[2026-09-06 11:51:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2633.20
+[2026-09-06 11:52:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2628.92
+[2026-09-06 11:52:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2628.64
+[2026-09-06 11:52:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2625.71
+[2026-09-06 11:52:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2634.27
+[2026-09-06 11:52:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2621.98
+[2026-09-06 11:52:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2609.86
+[2026-09-06 11:52:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2618.34
+[2026-09-06 11:52:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2586.75
+[2026-09-06 11:52:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2574.17
+[2026-09-06 11:52:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2570.17
+[2026-09-06 11:52:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2573.59
+[2026-09-06 11:52:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2568.83
+[2026-09-06 11:52:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2593.34
+[2026-09-06 11:52:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2593.99
+[2026-09-06 11:52:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2598.71
+[2026-09-06 11:52:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2588.41
+[2026-09-06 11:52:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2595.27
+[2026-09-06 11:52:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2588.54
+[2026-09-06 11:52:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2584.53
+[2026-09-06 11:52:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2614.02
+[2026-09-06 11:52:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2602.14
+[2026-09-06 11:52:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2613.66
+[2026-09-06 11:52:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2627.77
+[2026-09-06 11:52:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2622.65
+[2026-09-06 11:52:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2634.93
+[2026-09-06 11:52:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2638.60
+[2026-09-06 11:52:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2667.32
+[2026-09-06 11:52:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2642.42
+[2026-09-06 11:52:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2646.34
+[2026-09-06 11:53:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2678.51
+[2026-09-06 11:53:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2682.70
+[2026-09-06 11:53:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2683.85
+[2026-09-06 11:53:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2688.92
+[2026-09-06 11:53:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2661.37
+[2026-09-06 11:53:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2661.02
+[2026-09-06 11:53:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2677.18
+[2026-09-06 11:53:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2671.67
+[2026-09-06 11:53:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2667.97
+[2026-09-06 11:53:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2638.03
+[2026-09-06 11:53:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2634.12
+[2026-09-06 11:53:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2655.47
+[2026-09-06 11:53:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2668.96
+[2026-09-06 11:53:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2658.27
+[2026-09-06 11:53:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2648.06
+[2026-09-06 11:53:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2667.28
+[2026-09-06 11:53:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2664.63
+[2026-09-06 11:53:32] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹82,264.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:53:32] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹82,264.00 | SL: ₹82,675.32 | TP: ₹81,441.36
+[2026-09-06 11:53:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2668.79
+[2026-09-06 11:53:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2696.94
+[2026-09-06 11:53:36] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹83,262.00 (SL Target: ₹82,675.32)
+[2026-09-06 11:53:36] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹82,264.00 -> Exit ₹83,262.00 | Trade PnL: ₹-9,980.00 | New Account Balance: ₹464,170.00
+[2026-09-06 11:53:36] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-9,980.00 written to trades_log.csv
+[2026-09-06 11:53:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2682.79
+[2026-09-06 11:53:38] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹82,825.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:53:38] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹82,825.00 | SL: ₹83,239.12 | TP: ₹81,996.75
+[2026-09-06 11:53:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.92
+[2026-09-06 11:53:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2680.80
+[2026-09-06 11:53:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.10
+[2026-09-06 11:53:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2678.80
+[2026-09-06 11:53:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2670.03
+[2026-09-06 11:53:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2681.44
+[2026-09-06 11:53:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2651.32
+[2026-09-06 11:53:52] [INFO] [RISK] TAKE PROFIT TRIGGERED for SELL position @ ₹81,854.00 (TP Target: ₹81,996.75)
+[2026-09-06 11:53:52] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): SELL 1 Lot(s) @ Entry ₹82,825.00 -> Exit ₹81,854.00 | Trade PnL: ₹+9,710.00 | New Account Balance: ₹473,880.00
+[2026-09-06 11:53:52] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹+9,710.00 written to trades_log.csv
+[2026-09-06 11:53:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2626.15
+[2026-09-06 11:53:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2628.78
+[2026-09-06 11:53:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2640.76
+[2026-09-06 11:54:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2626.79
+[2026-09-06 11:54:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2612.05
+[2026-09-06 11:54:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2619.11
+[2026-09-06 11:54:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2602.29
+[2026-09-06 11:54:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2604.68
+[2026-09-06 11:54:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2609.03
+[2026-09-06 11:54:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2597.40
+[2026-09-06 11:54:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2599.38
+[2026-09-06 11:54:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2601.08
+[2026-09-06 11:54:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2611.68
+[2026-09-06 11:54:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2611.62
+[2026-09-06 11:54:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2628.48
+[2026-09-06 11:54:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2616.41
+[2026-09-06 11:54:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2628.19
+[2026-09-06 11:54:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2642.93
+[2026-09-06 11:54:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2652.43
+[2026-09-06 11:54:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2660.11
+[2026-09-06 11:54:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2665.47
+[2026-09-06 11:54:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2666.42
+[2026-09-06 11:54:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2651.92
+[2026-09-06 11:54:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2660.23
+[2026-09-06 11:54:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2684.92
+[2026-09-06 11:54:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2702.28
+[2026-09-06 11:54:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2694.17
+[2026-09-06 11:54:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2689.00
+[2026-09-06 11:54:48] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹83,017.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:54:48] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹83,017.00 | SL: ₹83,432.09 | TP: ₹82,186.83
+[2026-09-06 11:54:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2718.52
+[2026-09-06 11:54:50] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹83,928.00 (SL Target: ₹83,432.09)
+[2026-09-06 11:54:50] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹83,017.00 -> Exit ₹83,928.00 | Trade PnL: ₹-9,110.00 | New Account Balance: ₹464,770.00
+[2026-09-06 11:54:50] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-9,110.00 written to trades_log.csv
+[2026-09-06 11:54:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2736.60
+[2026-09-06 11:54:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2720.68
+[2026-09-06 11:54:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2715.37
+[2026-09-06 11:54:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.29
+[2026-09-06 11:54:58] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹83,705.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 11:54:58] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹83,705.00 | SL: ₹84,123.52 | TP: ₹82,867.95
+[2026-09-06 11:55:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2720.12
+[2026-09-06 11:55:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2696.56
+[2026-09-06 11:55:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2697.50
+[2026-09-06 11:55:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.41
+[2026-09-06 11:55:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2678.92
+[2026-09-06 11:55:08] [INFO] [RISK] TAKE PROFIT TRIGGERED for SELL position @ ₹82,706.00 (TP Target: ₹82,867.95)
+[2026-09-06 11:55:08] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): SELL 1 Lot(s) @ Entry ₹83,705.00 -> Exit ₹82,706.00 | Trade PnL: ₹+9,990.00 | New Account Balance: ₹474,760.00
+[2026-09-06 11:55:08] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹+9,990.00 written to trades_log.csv
+[2026-09-06 11:55:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2686.57
+[2026-09-06 11:55:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2709.03
+[2026-09-06 11:55:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2720.11
+[2026-09-06 11:55:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2735.65
+[2026-09-06 11:55:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2734.18
+[2026-09-06 11:55:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2697.05
+[2026-09-06 11:55:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2697.39
+[2026-09-06 11:55:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2686.11
+[2026-09-06 11:55:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2669.62
+[2026-09-06 11:55:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2643.29
+[2026-09-06 11:55:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2667.57
+[2026-09-06 11:55:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2650.63
+[2026-09-06 11:55:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2650.38
+[2026-09-06 11:55:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2640.61
+[2026-09-06 11:55:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2632.03
+[2026-09-06 11:55:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2634.47
+[2026-09-06 11:55:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2631.59
+[2026-09-06 11:55:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2656.26
+[2026-09-06 11:55:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2652.21
+[2026-09-06 11:55:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2671.62
+[2026-09-06 11:55:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2683.97
+[2026-09-06 11:55:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2668.61
+[2026-09-06 11:55:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2674.98
+[2026-09-06 11:55:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2700.81
+[2026-09-06 11:55:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2718.84
+[2026-09-06 11:56:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2692.77
+[2026-09-06 11:56:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2700.44
+[2026-09-06 11:56:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2712.76
+[2026-09-06 11:56:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2721.06
+[2026-09-06 11:56:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2742.84
+[2026-09-06 11:56:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2735.22
+[2026-09-06 11:56:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2749.69
+[2026-09-06 11:56:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2746.41
+[2026-09-06 11:56:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2755.91
+[2026-09-06 11:56:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.66
+[2026-09-06 11:56:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2733.06
+[2026-09-06 11:56:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2728.90
+[2026-09-06 11:56:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2732.63
+[2026-09-06 11:56:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2737.59
+[2026-09-06 11:56:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2735.92
+[2026-09-06 11:56:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2731.10
+[2026-09-06 11:56:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2718.15
+[2026-09-06 11:56:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2721.83
+[2026-09-06 11:56:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.78
+[2026-09-06 11:56:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2724.56
+[2026-09-06 11:56:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2716.93
+[2026-09-06 11:56:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2710.25
+[2026-09-06 11:56:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2701.30
+[2026-09-06 11:56:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2703.77
+[2026-09-06 11:56:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2704.31
+[2026-09-06 11:56:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2699.72
+[2026-09-06 11:56:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2712.55
+[2026-09-06 11:56:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2699.12
+[2026-09-06 11:56:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2694.34
+[2026-09-06 11:56:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2679.51
+[2026-09-06 11:57:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2678.77
+[2026-09-06 11:57:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2692.28
+[2026-09-06 11:57:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2685.61
+[2026-09-06 11:57:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2683.93
+[2026-09-06 11:57:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.55
+[2026-09-06 11:57:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2671.81
+[2026-09-06 11:57:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2685.51
+[2026-09-06 11:57:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2686.15
+[2026-09-06 11:57:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2691.71
+[2026-09-06 11:57:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.40
+[2026-09-06 11:57:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2703.90
+[2026-09-06 11:57:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2708.49
+[2026-09-06 11:57:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2718.12
+[2026-09-06 11:57:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.61
+[2026-09-06 11:57:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2721.05
+[2026-09-06 11:57:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2714.53
+[2026-09-06 11:57:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.87
+[2026-09-06 11:57:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2727.69
+[2026-09-06 11:57:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2726.92
+[2026-09-06 11:57:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.76
+[2026-09-06 11:57:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2716.92
+[2026-09-06 11:57:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2726.21
+[2026-09-06 11:57:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.51
+[2026-09-06 11:57:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.56
+[2026-09-06 11:57:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2738.77
+[2026-09-06 11:57:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2763.47
+[2026-09-06 11:57:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2754.27
+[2026-09-06 11:57:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2741.73
+[2026-09-06 11:57:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2712.01
+[2026-09-06 11:57:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2714.21
+[2026-09-06 11:58:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2717.78
+[2026-09-06 11:58:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2695.84
+[2026-09-06 11:58:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.12
+[2026-09-06 11:58:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2729.21
+[2026-09-06 11:58:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2745.94
+[2026-09-06 11:58:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2741.70
+[2026-09-06 11:58:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2741.31
+[2026-09-06 11:58:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.12
+[2026-09-06 11:58:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2716.59
+[2026-09-06 11:58:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.69
+[2026-09-06 11:58:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2739.69
+[2026-09-06 11:58:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2759.79
+[2026-09-06 11:58:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2766.41
+[2026-09-06 11:58:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2763.67
+[2026-09-06 11:58:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2732.11
+[2026-09-06 11:58:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2735.56
+[2026-09-06 11:58:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2728.27
+[2026-09-06 11:58:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2747.57
+[2026-09-06 11:58:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.24
+[2026-09-06 11:58:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2728.14
+[2026-09-06 11:58:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2750.74
+[2026-09-06 11:58:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2745.08
+[2026-09-06 11:58:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2746.66
+[2026-09-06 11:58:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2749.73
+[2026-09-06 11:58:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2767.65
+[2026-09-06 11:58:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2780.98
+[2026-09-06 11:58:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2793.48
+[2026-09-06 11:58:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2807.79
+[2026-09-06 11:58:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2824.16
+[2026-09-06 11:59:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2816.78
+[2026-09-06 11:59:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2830.37
+[2026-09-06 11:59:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2847.29
+[2026-09-06 11:59:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2824.35
+[2026-09-06 11:59:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2830.84
+[2026-09-06 11:59:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2830.55
+[2026-09-06 11:59:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2837.35
+[2026-09-06 11:59:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2836.78
+[2026-09-06 11:59:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2830.58
+[2026-09-06 11:59:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2817.71
+[2026-09-06 11:59:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2839.59
+[2026-09-06 11:59:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2833.71
+[2026-09-06 11:59:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2807.15
+[2026-09-06 11:59:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2829.89
+[2026-09-06 11:59:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2829.41
+[2026-09-06 11:59:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2813.07
+[2026-09-06 11:59:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2805.84
+[2026-09-06 11:59:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2815.03
+[2026-09-06 11:59:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2809.17
+[2026-09-06 11:59:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2817.02
+[2026-09-06 11:59:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2798.13
+[2026-09-06 11:59:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2805.79
+[2026-09-06 11:59:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.19
+[2026-09-06 11:59:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2760.22
+[2026-09-06 11:59:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2759.95
+[2026-09-06 11:59:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2741.87
+[2026-09-06 11:59:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2726.28
+[2026-09-06 11:59:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2745.25
+[2026-09-06 11:59:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2731.62
+[2026-09-06 11:59:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.41
+[2026-09-06 12:00:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2738.88
+[2026-09-06 12:00:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2753.13
+[2026-09-06 12:00:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2761.29
+[2026-09-06 12:00:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2781.26
+[2026-09-06 12:00:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2798.47
+[2026-09-06 12:00:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2805.27
+[2026-09-06 12:00:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2815.13
+[2026-09-06 12:00:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2808.88
+[2026-09-06 12:00:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2812.23
+[2026-09-06 12:00:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2822.64
+[2026-09-06 12:00:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2807.51
+[2026-09-06 12:00:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.68
+[2026-09-06 12:00:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2796.84
+[2026-09-06 12:00:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2781.32
+[2026-09-06 12:00:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.27
+[2026-09-06 12:00:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2771.62
+[2026-09-06 12:00:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2747.92
+[2026-09-06 12:00:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2778.59
+[2026-09-06 12:00:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2774.66
+[2026-09-06 12:00:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2784.18
+[2026-09-06 12:00:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2798.72
+[2026-09-06 12:00:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.82
+[2026-09-06 12:00:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2775.49
+[2026-09-06 12:00:44] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹85,687.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:00:44] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹85,687.00 | SL: ₹86,115.43 | TP: ₹84,830.13
+[2026-09-06 12:00:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2770.81
+[2026-09-06 12:00:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2799.71
+[2026-09-06 12:00:48] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹86,435.00 (SL Target: ₹86,115.43)
+[2026-09-06 12:00:48] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹85,687.00 -> Exit ₹86,435.00 | Trade PnL: ₹-7,480.00 | New Account Balance: ₹467,280.00
+[2026-09-06 12:00:48] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-7,480.00 written to trades_log.csv
+[2026-09-06 12:00:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2769.71
+[2026-09-06 12:00:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2774.68
+[2026-09-06 12:00:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2793.12
+[2026-09-06 12:00:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2811.84
+[2026-09-06 12:00:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2831.03
+[2026-09-06 12:01:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2843.74
+[2026-09-06 12:01:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2860.50
+[2026-09-06 12:01:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2853.35
+[2026-09-06 12:01:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2855.51
+[2026-09-06 12:01:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2866.16
+[2026-09-06 12:01:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2853.54
+[2026-09-06 12:01:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2857.76
+[2026-09-06 12:01:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2834.08
+[2026-09-06 12:01:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2829.60
+[2026-09-06 12:01:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2816.47
+[2026-09-06 12:01:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2809.59
+[2026-09-06 12:01:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2809.89
+[2026-09-06 12:01:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2811.84
+[2026-09-06 12:01:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2803.16
+[2026-09-06 12:01:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2812.37
+[2026-09-06 12:01:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2825.89
+[2026-09-06 12:01:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2816.77
+[2026-09-06 12:01:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2819.91
+[2026-09-06 12:01:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2821.45
+[2026-09-06 12:01:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2807.21
+[2026-09-06 12:01:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2812.26
+[2026-09-06 12:01:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2808.38
+[2026-09-06 12:01:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2804.77
+[2026-09-06 12:01:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2814.21
+[2026-09-06 12:01:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2813.78
+[2026-09-06 12:01:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2814.47
+[2026-09-06 12:01:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2823.98
+[2026-09-06 12:01:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2832.86
+[2026-09-06 12:01:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2822.27
+[2026-09-06 12:01:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2835.99
+[2026-09-06 12:02:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2832.44
+[2026-09-06 12:02:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2830.12
+[2026-09-06 12:02:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2830.07
+[2026-09-06 12:02:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2808.59
+[2026-09-06 12:02:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2813.32
+[2026-09-06 12:02:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2786.24
+[2026-09-06 12:02:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2771.40
+[2026-09-06 12:02:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2771.46
+[2026-09-06 12:02:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2761.01
+[2026-09-06 12:02:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2762.52
+[2026-09-06 12:02:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2744.14
+[2026-09-06 12:02:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.13
+[2026-09-06 12:02:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2742.70
+[2026-09-06 12:02:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.52
+[2026-09-06 12:02:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2716.68
+[2026-09-06 12:02:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.78
+[2026-09-06 12:02:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.70
+[2026-09-06 12:02:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2731.53
+[2026-09-06 12:02:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2733.74
+[2026-09-06 12:02:37] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹84,398.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:02:37] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹84,398.00 | SL: ₹84,819.99 | TP: ₹83,554.02
+[2026-09-06 12:02:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2724.43
+[2026-09-06 12:02:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2737.05
+[2026-09-06 12:02:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2744.64
+[2026-09-06 12:02:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2757.49
+[2026-09-06 12:02:45] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹85,131.00 (SL Target: ₹84,819.99)
+[2026-09-06 12:02:45] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹84,398.00 -> Exit ₹85,131.00 | Trade PnL: ₹-7,330.00 | New Account Balance: ₹459,950.00
+[2026-09-06 12:02:45] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-7,330.00 written to trades_log.csv
+[2026-09-06 12:02:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2744.87
+[2026-09-06 12:02:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2754.01
+[2026-09-06 12:02:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2739.39
+[2026-09-06 12:02:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.47
+[2026-09-06 12:02:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2727.18
+[2026-09-06 12:02:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2712.23
+[2026-09-06 12:02:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2704.15
+[2026-09-06 12:03:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2709.93
+[2026-09-06 12:03:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2715.83
+[2026-09-06 12:03:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.62
+[2026-09-06 12:03:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.50
+[2026-09-06 12:03:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2731.36
+[2026-09-06 12:03:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2739.43
+[2026-09-06 12:03:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2724.51
+[2026-09-06 12:03:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2717.45
+[2026-09-06 12:03:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2726.08
+[2026-09-06 12:03:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2717.38
+[2026-09-06 12:03:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2721.62
+[2026-09-06 12:03:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2733.74
+[2026-09-06 12:03:23] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹84,398.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:03:23] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹84,398.00 | SL: ₹83,976.01 | TP: ₹85,241.98
+[2026-09-06 12:03:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2749.86
+[2026-09-06 12:03:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2736.47
+[2026-09-06 12:03:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2732.85
+[2026-09-06 12:03:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2724.33
+[2026-09-06 12:03:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2704.80
+[2026-09-06 12:03:33] [WARNING] [RISK] STOP LOSS TRIGGERED for BUY position @ ₹83,505.00 (SL Target: ₹83,976.01)
+[2026-09-06 12:03:33] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): BUY 1 Lot(s) @ Entry ₹84,398.00 -> Exit ₹83,505.00 | Trade PnL: ₹-8,930.00 | New Account Balance: ₹451,020.00
+[2026-09-06 12:03:33] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹-8,930.00 written to trades_log.csv
+[2026-09-06 12:03:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2706.31
+[2026-09-06 12:03:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2698.63
+[2026-09-06 12:03:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.55
+[2026-09-06 12:03:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2693.34
+[2026-09-06 12:03:42] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹83,151.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:03:42] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹83,151.00 | SL: ₹83,566.76 | TP: ₹82,319.49
+[2026-09-06 12:03:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2680.28
+[2026-09-06 12:03:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2664.42
+[2026-09-06 12:03:46] [INFO] [RISK] TAKE PROFIT TRIGGERED for SELL position @ ₹82,258.00 (TP Target: ₹82,319.49)
+[2026-09-06 12:03:46] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): SELL 1 Lot(s) @ Entry ₹83,151.00 -> Exit ₹82,258.00 | Trade PnL: ₹+8,930.00 | New Account Balance: ₹459,950.00
+[2026-09-06 12:03:46] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹+8,930.00 written to trades_log.csv
+[2026-09-06 12:03:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2654.12
+[2026-09-06 12:03:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2643.04
+[2026-09-06 12:03:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2652.99
+[2026-09-06 12:03:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2660.63
+[2026-09-06 12:03:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2679.21
+[2026-09-06 12:03:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2673.34
+[2026-09-06 12:04:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2680.70
+[2026-09-06 12:04:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2688.55
+[2026-09-06 12:04:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2692.92
+[2026-09-06 12:04:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2700.22
+[2026-09-06 12:04:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2710.14
+[2026-09-06 12:04:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2731.13
+[2026-09-06 12:04:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2729.61
+[2026-09-06 12:04:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2705.33
+[2026-09-06 12:04:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2721.83
+[2026-09-06 12:04:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.96
+[2026-09-06 12:04:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2719.77
+[2026-09-06 12:04:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2707.69
+[2026-09-06 12:04:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2715.52
+[2026-09-06 12:04:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2723.83
+[2026-09-06 12:04:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.64
+[2026-09-06 12:04:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2700.27
+[2026-09-06 12:04:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2699.68
+[2026-09-06 12:04:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.91
+[2026-09-06 12:04:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2723.72
+[2026-09-06 12:04:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2706.86
+[2026-09-06 12:04:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2701.55
+[2026-09-06 12:04:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2696.18
+[2026-09-06 12:04:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2696.19
+[2026-09-06 12:04:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2700.47
+[2026-09-06 12:04:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2697.97
+[2026-09-06 12:04:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2705.05
+[2026-09-06 12:04:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2701.13
+[2026-09-06 12:04:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2705.25
+[2026-09-06 12:04:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.53
+[2026-09-06 12:04:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2717.62
+[2026-09-06 12:05:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2732.22
+[2026-09-06 12:05:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2716.66
+[2026-09-06 12:05:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.00
+[2026-09-06 12:05:04] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹84,128.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:05:04] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹84,128.00 | SL: ₹84,548.64 | TP: ₹83,286.72
+[2026-09-06 12:05:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2739.99
+[2026-09-06 12:05:06] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹84,591.00 (SL Target: ₹84,548.64)
+[2026-09-06 12:05:06] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹84,128.00 -> Exit ₹84,591.00 | Trade PnL: ₹-4,630.00 | New Account Balance: ₹455,320.00
+[2026-09-06 12:05:06] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-4,630.00 written to trades_log.csv
+[2026-09-06 12:05:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2729.30
+[2026-09-06 12:05:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2742.44
+[2026-09-06 12:05:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2714.31
+[2026-09-06 12:05:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2705.87
+[2026-09-06 12:05:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2697.51
+[2026-09-06 12:05:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2696.96
+[2026-09-06 12:05:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2716.93
+[2026-09-06 12:05:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.03
+[2026-09-06 12:05:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.12
+[2026-09-06 12:05:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2709.10
+[2026-09-06 12:05:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2713.31
+[2026-09-06 12:05:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.77
+[2026-09-06 12:05:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2749.31
+[2026-09-06 12:05:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2762.95
+[2026-09-06 12:05:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2742.78
+[2026-09-06 12:05:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2741.38
+[2026-09-06 12:05:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.01
+[2026-09-06 12:05:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2776.99
+[2026-09-06 12:05:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2777.57
+[2026-09-06 12:05:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2805.48
+[2026-09-06 12:05:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2825.69
+[2026-09-06 12:05:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2867.09
+[2026-09-06 12:05:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2855.16
+[2026-09-06 12:05:52] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹88,147.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:05:52] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹88,147.00 | SL: ₹87,706.26 | TP: ₹89,028.47
+[2026-09-06 12:05:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2849.47
+[2026-09-06 12:05:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2832.04
+[2026-09-06 12:05:56] [WARNING] [RISK] STOP LOSS TRIGGERED for BUY position @ ₹87,433.00 (SL Target: ₹87,706.26)
+[2026-09-06 12:05:56] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): BUY 1 Lot(s) @ Entry ₹88,147.00 -> Exit ₹87,433.00 | Trade PnL: ₹-7,140.00 | New Account Balance: ₹448,180.00
+[2026-09-06 12:05:56] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹-7,140.00 written to trades_log.csv
+[2026-09-06 12:05:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2835.19
+[2026-09-06 12:06:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2831.71
+[2026-09-06 12:06:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2826.33
+[2026-09-06 12:06:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2835.98
+[2026-09-06 12:06:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2824.00
+[2026-09-06 12:06:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2797.38
+[2026-09-06 12:06:09] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹86,363.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:06:09] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹86,363.00 | SL: ₹85,931.18 | TP: ₹87,226.63
+[2026-09-06 12:06:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2789.35
+[2026-09-06 12:06:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2757.91
+[2026-09-06 12:06:13] [WARNING] [RISK] STOP LOSS TRIGGERED for BUY position @ ₹85,144.00 (SL Target: ₹85,931.18)
+[2026-09-06 12:06:13] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): BUY 1 Lot(s) @ Entry ₹86,363.00 -> Exit ₹85,144.00 | Trade PnL: ₹-12,190.00 | New Account Balance: ₹435,990.00
+[2026-09-06 12:06:13] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹-12,190.00 written to trades_log.csv
+[2026-09-06 12:06:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2747.77
+[2026-09-06 12:06:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2751.00
+[2026-09-06 12:06:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2754.67
+[2026-09-06 12:06:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2776.23
+[2026-09-06 12:06:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2757.50
+[2026-09-06 12:06:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2741.13
+[2026-09-06 12:06:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2727.41
+[2026-09-06 12:06:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2712.57
+[2026-09-06 12:06:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.59
+[2026-09-06 12:06:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2747.04
+[2026-09-06 12:06:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2755.12
+[2026-09-06 12:06:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2752.03
+[2026-09-06 12:06:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2761.53
+[2026-09-06 12:06:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2754.06
+[2026-09-06 12:06:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2729.78
+[2026-09-06 12:06:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2712.66
+[2026-09-06 12:06:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2694.39
+[2026-09-06 12:06:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2687.04
+[2026-09-06 12:06:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2685.63
+[2026-09-06 12:06:51] [INFO] [ORDER] Order Request Received: BUY 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹82,913.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:06:51] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: BUY 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹82,913.00 | SL: ₹82,498.43 | TP: ₹83,742.13
+[2026-09-06 12:06:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2701.18
+[2026-09-06 12:06:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2729.27
+[2026-09-06 12:06:55] [INFO] [RISK] TAKE PROFIT TRIGGERED for BUY position @ ₹84,260.00 (TP Target: ₹83,742.13)
+[2026-09-06 12:06:55] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): BUY 1 Lot(s) @ Entry ₹82,913.00 -> Exit ₹84,260.00 | Trade PnL: ₹+13,470.00 | New Account Balance: ₹449,460.00
+[2026-09-06 12:06:55] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 BUY PnL=₹+13,470.00 written to trades_log.csv
+[2026-09-06 12:06:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2722.03
+[2026-09-06 12:06:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2738.92
+[2026-09-06 12:07:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2740.20
+[2026-09-06 12:07:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.42
+[2026-09-06 12:07:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2723.57
+[2026-09-06 12:07:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2723.16
+[2026-09-06 12:07:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2725.71
+[2026-09-06 12:07:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2711.59
+[2026-09-06 12:07:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2727.82
+[2026-09-06 12:07:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2733.36
+[2026-09-06 12:07:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2730.90
+[2026-09-06 12:07:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2744.75
+[2026-09-06 12:07:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2751.22
+[2026-09-06 12:07:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2772.57
+[2026-09-06 12:07:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2788.07
+[2026-09-06 12:07:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2771.98
+[2026-09-06 12:07:29] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2782.18
+[2026-09-06 12:07:31] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2800.12
+[2026-09-06 12:07:33] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2816.50
+[2026-09-06 12:07:35] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2812.02
+[2026-09-06 12:07:37] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2799.97
+[2026-09-06 12:07:39] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2815.82
+[2026-09-06 12:07:41] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2831.14
+[2026-09-06 12:07:43] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2816.28
+[2026-09-06 12:07:45] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2800.02
+[2026-09-06 12:07:47] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2815.94
+[2026-09-06 12:07:49] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2816.45
+[2026-09-06 12:07:51] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2804.90
+[2026-09-06 12:07:53] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2801.61
+[2026-09-06 12:07:55] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2810.20
+[2026-09-06 12:07:57] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2811.33
+[2026-09-06 12:07:59] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2821.06
+[2026-09-06 12:08:01] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2815.94
+[2026-09-06 12:08:03] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2813.26
+[2026-09-06 12:08:05] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2795.74
+[2026-09-06 12:08:07] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2797.61
+[2026-09-06 12:08:09] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2786.43
+[2026-09-06 12:08:11] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2785.12
+[2026-09-06 12:08:13] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2772.62
+[2026-09-06 12:08:15] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2749.91
+[2026-09-06 12:08:17] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2738.04
+[2026-09-06 12:08:19] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2749.67
+[2026-09-06 12:08:21] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2743.78
+[2026-09-06 12:08:23] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2737.07
+[2026-09-06 12:08:25] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2752.87
+[2026-09-06 12:08:27] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2788.88
+[2026-09-06 12:08:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2803.67
+[2026-09-06 12:08:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2785.68
+[2026-09-06 12:08:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2776.69
+[2026-09-06 12:08:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2772.94
+[2026-09-06 12:08:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2779.68
+[2026-09-06 12:08:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2778.16
+[2026-09-06 12:08:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2789.03
+[2026-09-06 12:08:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2784.67
+[2026-09-06 12:08:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2779.35
+[2026-09-06 12:08:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2768.19
+[2026-09-06 12:08:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2765.52
+[2026-09-06 12:08:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2769.55
+[2026-09-06 12:08:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2787.05
+[2026-09-06 12:08:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2781.41
+[2026-09-06 12:08:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2777.14
+[2026-09-06 12:09:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2801.25
+[2026-09-06 12:09:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2798.88
+[2026-09-06 12:09:02] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹86,409.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:09:02] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹86,409.00 | SL: ₹86,841.04 | TP: ₹85,544.91
+[2026-09-06 12:09:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2808.87
+[2026-09-06 12:09:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.47
+[2026-09-06 12:09:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2782.87
+[2026-09-06 12:09:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2782.50
+[2026-09-06 12:09:10] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹85,903.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:09:10] [WARNING] [ORDER] Order Rejected: Already holding active SELL position.
+[2026-09-06 12:09:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2776.52
+[2026-09-06 12:09:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2774.48
+[2026-09-06 12:09:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2762.54
+[2026-09-06 12:09:16] [INFO] [RISK] TAKE PROFIT TRIGGERED for SELL position @ ₹85,287.00 (TP Target: ₹85,544.91)
+[2026-09-06 12:09:16] [INFO] [BOOKING] POSITION CLOSED (TAKE_PROFIT): SELL 1 Lot(s) @ Entry ₹86,409.00 -> Exit ₹85,287.00 | Trade PnL: ₹+11,220.00 | New Account Balance: ₹460,680.00
+[2026-09-06 12:09:16] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹+11,220.00 written to trades_log.csv
+[2026-09-06 12:09:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2766.68
+[2026-09-06 12:09:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2775.43
+[2026-09-06 12:09:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2757.07
+[2026-09-06 12:09:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2738.58
+[2026-09-06 12:09:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2736.49
+[2026-09-06 12:09:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2757.41
+[2026-09-06 12:09:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2771.18
+[2026-09-06 12:09:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2772.82
+[2026-09-06 12:09:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2772.26
+[2026-09-06 12:09:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2776.71
+[2026-09-06 12:09:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2760.00
+[2026-09-06 12:09:38] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹85,209.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:09:38] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹85,209.00 | SL: ₹85,635.04 | TP: ₹84,356.91
+[2026-09-06 12:09:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2768.99
+[2026-09-06 12:09:42] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2758.69
+[2026-09-06 12:09:44] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2748.23
+[2026-09-06 12:09:46] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2752.61
+[2026-09-06 12:09:48] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2777.60
+[2026-09-06 12:09:48] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹85,752.00 (SL Target: ₹85,635.04)
+[2026-09-06 12:09:48] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹85,209.00 -> Exit ₹85,752.00 | Trade PnL: ₹-5,430.00 | New Account Balance: ₹455,250.00
+[2026-09-06 12:09:48] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-5,430.00 written to trades_log.csv
+[2026-09-06 12:09:50] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2780.68
+[2026-09-06 12:09:52] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2793.37
+[2026-09-06 12:09:54] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.68
+[2026-09-06 12:09:56] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2795.46
+[2026-09-06 12:09:58] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2794.84
+[2026-09-06 12:10:00] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2796.69
+[2026-09-06 12:10:02] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2794.27
+[2026-09-06 12:10:04] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2808.31
+[2026-09-06 12:10:06] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2794.75
+[2026-09-06 12:10:08] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2798.12
+[2026-09-06 12:10:10] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2794.02
+[2026-09-06 12:10:12] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2787.00
+[2026-09-06 12:10:14] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2773.66
+[2026-09-06 12:10:16] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2765.66
+[2026-09-06 12:10:18] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2773.98
+[2026-09-06 12:10:20] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2769.72
+[2026-09-06 12:10:22] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2767.08
+[2026-09-06 12:10:22] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹85,427.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:10:22] [INFO] [BOOKING] ORDER FILLED & POSITION OPENED: SELL 1 Lot(s) MCX_GOLDM_OCT2026 @ ₹85,427.00 | SL: ₹85,854.13 | TP: ₹84,572.73
+[2026-09-06 12:10:24] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2773.96
+[2026-09-06 12:10:26] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2778.80
+[2026-09-06 12:10:26] [INFO] [ORDER] Order Request Received: SELL 1 Lot(s) of MCX_GOLDM_OCT2026 @ ₹85,789.00 (Strategy: EMA_CROSSOVER)
+[2026-09-06 12:10:26] [WARNING] [ORDER] Order Rejected: Already holding active SELL position.
+[2026-09-06 12:10:28] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2791.23
+[2026-09-06 12:10:28] [WARNING] [RISK] STOP LOSS TRIGGERED for SELL position @ ₹86,173.00 (SL Target: ₹85,854.13)
+[2026-09-06 12:10:28] [INFO] [BOOKING] POSITION CLOSED (STOP_LOSS): SELL 1 Lot(s) @ Entry ₹85,427.00 -> Exit ₹86,173.00 | Trade PnL: ₹-7,460.00 | New Account Balance: ₹447,790.00
+[2026-09-06 12:10:28] [INFO] [SYSTEM] CSV Log Appended: MCX_GOLDM_OCT2026 SELL PnL=₹-7,460.00 written to trades_log.csv
+[2026-09-06 12:10:30] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2781.17
+[2026-09-06 12:10:32] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2774.33
+[2026-09-06 12:10:34] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2755.49
+[2026-09-06 12:10:36] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2762.88
+[2026-09-06 12:10:38] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2751.53
+[2026-09-06 12:10:40] [INFO] [POLLING] OANDA Poll (Demo Mode): Fetched 100 candles for XAU_USD (M5) | Latest Price: $2765.42

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Gold to Groww MCX Gold Algo Paper Trader</title>
+    <!-- Google Fonts & Lightweight Charts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation & Control Panel -->
+        <aside class="sidebar glass-card">
+            <div class="brand">
+                <div class="gold-icon">⚜</div>
+                <div>
+                    <h1>GOLD<span class="highlight">ALGO</span></h1>
+                    <p class="subtitle">OANDA ⚡ Groww MCX</p>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>Strategy & Timeframe</h3>
+                <div class="form-group">
+                    <label for="timeframeSelect">Candle Timeframe</label>
+                    <select id="timeframeSelect" class="input-field">
+                        <option value="M1">1 Minute (M1)</option>
+                        <option value="M5" selected>5 Minutes (M5)</option>
+                        <option value="M15">15 Minutes (M15)</option>
+                        <option value="H1">1 Hour (H1)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="strategySelect">Trading Strategy</label>
+                    <select id="strategySelect" class="input-field">
+                        <option value="EMA_CROSSOVER">EMA Crossover (Trend)</option>
+                        <option value="LEAD_LAG_ARBITRAGE">Forex Lead-Lag Arbitrage</option>
+                        <option value="MEAN_REVERSION">Mean Reversion (RSI + BB)</option>
+                        <option value="VOLATILITY_BREAKOUT">Volatility Breakout (Donchian)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>Account & Risk Controls</h3>
+                <div class="form-group">
+                    <label for="balanceInput">Paper Balance (INR)</label>
+                    <input type="number" id="balanceInput" class="input-field" value="500000" step="10000">
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="slInput">Stop Loss %</label>
+                        <input type="number" id="slInput" class="input-field" value="0.5" step="0.1">
+                    </div>
+                    <div class="form-group half">
+                        <label for="tpInput">Take Profit %</label>
+                        <input type="number" id="tpInput" class="input-field" value="1.0" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>API Tokens & Credentials</h3>
+                <div class="form-group">
+                    <label for="oandaToken">OANDA API Token</label>
+                    <input type="password" id="oandaToken" class="input-field" value="DEMO_TOKEN_PLACEHOLDER">
+                </div>
+                <div class="form-group">
+                    <label for="oandaAccount">OANDA Account ID</label>
+                    <input type="text" id="oandaAccount" class="input-field" value="101-001-12345678-001">
+                </div>
+                <div class="form-group">
+                    <label for="growwToken">Groww Access Token</label>
+                    <input type="password" id="growwToken" class="input-field" placeholder="Optional Groww Access Token">
+                </div>
+                <div class="form-group">
+                    <label for="growwSymbol">Groww MCX Symbol</label>
+                    <input type="text" id="growwSymbol" class="input-field" value="GOLDM26OCTFUT">
+                </div>
+                <button id="saveConfigBtn" class="btn btn-secondary">💾 Save & Update Settings</button>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="/api/trades/csv" download class="btn btn-gold">
+                    <span class="icon">📥</span> Download CSV Report
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard View -->
+        <main class="main-content">
+            <!-- Header Metrics Strip -->
+            <header class="header-strip glass-card">
+                <div class="metric-box">
+                    <span class="label">XAU/USD Forex Gold</span>
+                    <div class="value-group">
+                        <span id="forexPrice" class="value gold-text">$2,510.50</span>
+                        <span class="unit">USD/oz</span>
+                    </div>
+                </div>
+
+                <div class="metric-box">
+                    <span class="label">MCX Gold Mini (<span id="mcxSourceBadge">DERIVED</span>)</span>
+                    <div class="value-group">
+                        <span id="mcxPrice" class="value">₹77,180.00</span>
+                        <span class="unit">INR/10g</span>
+                    </div>
+                </div>
+
+                <div class="metric-box">
+                    <span class="label">Account Equity</span>
+                    <div class="value-group">
+                        <span id="totalEquity" class="value">₹5,00,000.00</span>
+                    </div>
+                </div>
+
+                <div class="metric-box">
+                    <span class="label">Realized PnL</span>
+                    <div class="value-group">
+                        <span id="realizedPnl" class="value neutral">₹0.00</span>
+                    </div>
+                </div>
+
+                <div class="metric-box">
+                    <span class="label">Algo Status</span>
+                    <div class="toggle-container">
+                        <button id="toggleAutoTradeBtn" class="btn btn-toggle active">
+                            <span class="status-dot"></span> <span id="autoTradeLabel">AUTO TRADING ON</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Chart & Live Order Panel Grid -->
+            <div class="dashboard-grid">
+                <!-- Main Candlestick Chart -->
+                <section class="chart-card glass-card">
+                    <div class="card-header">
+                        <h2>OANDA XAU/USD Live Chart (<span id="chartTfLabel">M5</span>)</h2>
+                        <div class="live-badge">
+                            <span class="pulse"></span> LIVE FEED
+                        </div>
+                    </div>
+                    <div id="tvChartContainer" class="chart-container"></div>
+                </section>
+
+                <!-- Signal & Quick Execution Panel -->
+                <section class="trade-panel glass-card">
+                    <div class="card-header">
+                        <h2>Signal & Execution</h2>
+                        <span id="activeStrategyBadge" class="badge">EMA_CROSSOVER</span>
+                    </div>
+
+                    <div class="signal-box">
+                        <span class="label">CURRENT STRATEGY SIGNAL</span>
+                        <div id="signalBanner" class="signal-banner neutral">NEUTRAL</div>
+                        <p id="signalReason" class="signal-reason">Awaiting next tick calculation...</p>
+                    </div>
+
+                    <div class="manual-execution-section">
+                        <h3>Groww Paper Execution</h3>
+                        <div class="lots-picker">
+                            <label>Lot Size (1 Lot = 100g)</label>
+                            <input type="number" id="manualLots" value="1" min="1" max="10" class="input-field">
+                        </div>
+                        <div class="action-buttons">
+                            <button id="manualBuyBtn" class="btn btn-buy">BUY GOLDM</button>
+                            <button id="manualSellBtn" class="btn btn-sell">SELL GOLDM</button>
+                        </div>
+                        <button id="testAutoSignalBtn" class="btn btn-secondary">⚡ Test Auto Signal Execution</button>
+                        <button id="manualSquareOffBtn" class="btn btn-squareoff">SQUARE OFF POSITION</button>
+                    </div>
+
+                    <div class="open-position-box">
+                        <h3>Active Position</h3>
+                        <div id="noPositionMsg" class="empty-state">No open positions</div>
+                        <div id="positionDetails" class="position-details hidden">
+                            <div class="pos-row">
+                                <span>Instrument:</span> <strong id="posInstrument">MCX_GOLDM</strong>
+                            </div>
+                            <div class="pos-row">
+                                <span>Side & Lots:</span> <strong id="posSideLots">BUY (1 Lot)</strong>
+                            </div>
+                            <div class="pos-row">
+                                <span>Entry Price:</span> <span id="posEntryPrice">₹77,180.00</span>
+                            </div>
+                            <div class="pos-row">
+                                <span>Unrealized MTM:</span> <span id="posUnrealizedPnl" class="pnl-value">₹0.00</span>
+                            </div>
+                            <div class="pos-row">
+                                <span>SL / TP Target:</span> <span id="posSlTp">SL: ₹76,794 | TP: ₹77,951</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Live Polling & Booking Activity Terminal -->
+            <section class="table-card glass-card">
+                <div class="card-header">
+                    <h2>Live Activity Logs Console (Polling & Order Booking)</h2>
+                    <span class="hint">Synced with <code>app_activity.log</code></span>
+                </div>
+                <div class="terminal-container" id="terminalLogsContainer">
+                    <div class="terminal-log">System logging initialized...</div>
+                </div>
+            </section>
+
+            <!-- Trade History & CSV Log Table -->
+            <section class="table-card glass-card">
+                <div class="card-header">
+                    <h2>Executed Paper Trades Log</h2>
+                    <span class="hint">Auto-synced with <code>trades_log.csv</code></span>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Instrument</th>
+                                <th>Strategy</th>
+                                <th>Action</th>
+                                <th>Lots</th>
+                                <th>Entry Price (₹)</th>
+                                <th>Exit Price (₹)</th>
+                                <th>Forex Ref ($)</th>
+                                <th>Trade PnL (₹)</th>
+                                <th>Balance (₹)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tradeLogBody">
+                            <tr>
+                                <td colspan="11" class="text-center">No trades logged yet. Engine running...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
