@@ -56,7 +56,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Forex Gold to MCX Gold Algo Trader")
     parser.add_argument("--cli", action="store_true", help="Run in headless terminal CLI mode")
     parser.add_argument("--host", default="0.0.0.0", help="Web Dashboard Host IP")
-    parser.add_argument("--port", type=int, default=8000, help="Web Dashboard Port")
+    parser.add_argument("--port", type=int, default=8050, help="Web Dashboard Port")
     args = parser.parse_args()
 
     if args.cli:
