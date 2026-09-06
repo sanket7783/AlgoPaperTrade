@@ -47,7 +47,7 @@ def run_cli_mode():
     except KeyboardInterrupt:
         print("\n[Engine Stopped] Goodbye!")
 
-def run_ui_mode(host: str = "127.0.0.1", port: int = 8000):
+def run_ui_mode(host: str = "0.0.0.0", port: int = 8050):
     print(f"Starting Gold Algo Trading Web Dashboard at http://{host}:{port}")
     uvicorn.run("app:app", host=host, port=port, reload=False)
 
@@ -55,7 +55,7 @@ def run_ui_mode(host: str = "127.0.0.1", port: int = 8000):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Forex Gold to MCX Gold Algo Trader")
     parser.add_argument("--cli", action="store_true", help="Run in headless terminal CLI mode")
-    parser.add_argument("--host", default="127.0.0.1", help="Web Dashboard Host IP")
+    parser.add_argument("--host", default="0.0.0.0", help="Web Dashboard Host IP")
     parser.add_argument("--port", type=int, default=8000, help="Web Dashboard Port")
     args = parser.parse_args()
 
