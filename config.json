@@ -7,8 +7,8 @@
         "timeframe": "M5"
     },
     "mcx": {
-        "instrument_name": "MCX_GOLDGUINEA26OCTFUT",
-        "groww_trading_symbol": "GOLDGUINEA26OCTFUT",
+        "instrument_name": "MCX_GOLDGUINEA30SEP26FUT",
+        "groww_trading_symbol": "GOLDGUINEA30SEP26FUT",
         "groww_api_key": "",
         "groww_api_secret": "",
         "groww_access_token": "",

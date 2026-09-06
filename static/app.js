@@ -255,10 +255,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 2. Fetch and Populate Symbols Dropdown
-    async function loadSymbols(selectedSymbol = "") {
+    // 2. Fetch and Populate Symbols Dropdown directly from Groww
+    async function loadSymbols(selectedSymbol = "", forceRefresh = false) {
         try {
-            const res = await fetch("/api/groww/symbols");
+            const url = forceRefresh ? "/api/groww/symbols?refresh=true" : "/api/groww/symbols";
+            const res = await fetch(url);
             const data = await res.json();
             const symbolsSelect = document.getElementById("growwSymbol");
             if (data.symbols && symbolsSelect) {
@@ -269,15 +270,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }).join("");
             }
         } catch (e) {
-            console.error("[AlgoPaperTrade] Error loading symbols:", e);
+            console.error("[AlgoPaperTrade] Error loading symbols from Groww:", e);
         }
     }
 
     const refreshBtn = document.getElementById("refreshSymbolsBtn");
     if (refreshBtn) {
         refreshBtn.addEventListener("click", async () => {
-            refreshBtn.innerText = "⏳ Loading...";
-            await loadSymbols();
+            refreshBtn.innerText = "⏳ Fetching from Groww...";
+            await loadSymbols("", true);
             refreshBtn.innerText = "🔄 Refresh";
         });
     }

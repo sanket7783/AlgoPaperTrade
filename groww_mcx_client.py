@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from typing import Optional, Dict, Any, Tuple, List
 from app_logger import log_event
 
@@ -10,43 +11,57 @@ except ImportError:
 
 DEFAULT_MCX_GOLD_SYMBOLS = [
     {
-        "symbol": "GOLDGUINEA26OCTFUT",
-        "display_name": "MCX Gold Guinea (8g) - Margin ~₹6,200 [Fits ₹25k]",
+        "symbol": "GOLDGUINEA30SEP26FUT",
+        "display_name": "MCX Gold Guinea 8g (Exp: 2026-09-30) - Margin ~Rs.6,200 [Fits Rs.25k]",
         "contract_size_grams": 8.0,
         "price_unit_grams": 8.0,
         "recommended": True
     },
     {
-        "symbol": "GOLDGUINEA26NOVFUT",
-        "display_name": "MCX Gold Guinea Nov Fut (8g) - Margin ~₹6,200 [Fits ₹25k]",
+        "symbol": "GOLDGUINEA30OCT26FUT",
+        "display_name": "MCX Gold Guinea 8g (Exp: 2026-10-30) - Margin ~Rs.6,200 [Fits Rs.25k]",
         "contract_size_grams": 8.0,
         "price_unit_grams": 8.0,
         "recommended": False
     },
     {
-        "symbol": "GOLDPETAL26OCTFUT",
-        "display_name": "MCX Gold Petal (1g) - Margin ~₹800 [Fits ₹25k]",
+        "symbol": "GOLDPETAL30SEP26FUT",
+        "display_name": "MCX Gold Petal 1g (Exp: 2026-09-30) - Margin ~Rs.800 [Fits Rs.25k]",
         "contract_size_grams": 1.0,
         "price_unit_grams": 1.0,
         "recommended": False
     },
     {
-        "symbol": "SILVERMIC26NOV26FUT",
-        "display_name": "MCX Silver Micro (1kg) - Margin ~₹8,500 [Fits ₹25k]",
-        "contract_size_grams": 1000.0,
-        "price_unit_grams": 1000.0,
+        "symbol": "GOLDPETAL30OCT26FUT",
+        "display_name": "MCX Gold Petal 1g (Exp: 2026-10-30) - Margin ~Rs.800 [Fits Rs.25k]",
+        "contract_size_grams": 1.0,
+        "price_unit_grams": 1.0,
         "recommended": False
     },
     {
-        "symbol": "GOLDM26OCTFUT",
-        "display_name": "MCX Gold Mini (100g) - Margin ~₹78,000 [Needs >₹80k]",
+        "symbol": "GOLDM05OCT26FUT",
+        "display_name": "MCX Gold Mini 100g (Exp: 2026-10-05) - Margin ~Rs.78,000 [Needs >Rs.80k]",
         "contract_size_grams": 100.0,
         "price_unit_grams": 10.0,
         "recommended": False
     },
     {
-        "symbol": "GOLD26OCTFUT",
-        "display_name": "MCX Gold Mega (1kg) - Margin ~₹7,80,000",
+        "symbol": "GOLDTEN30SEP26FUT",
+        "display_name": "MCX Gold Ten 10g (Exp: 2026-09-30) - Margin ~Rs.7,800 [Fits Rs.25k]",
+        "contract_size_grams": 10.0,
+        "price_unit_grams": 10.0,
+        "recommended": False
+    },
+    {
+        "symbol": "SILVERMIC30NOV26FUT",
+        "display_name": "MCX Silver Micro 1kg (Exp: 2026-11-30) - Margin ~Rs.8,500 [Fits Rs.25k]",
+        "contract_size_grams": 1000.0,
+        "price_unit_grams": 1000.0,
+        "recommended": False
+    },
+    {
+        "symbol": "GOLD05OCT26FUT",
+        "display_name": "MCX Gold Mega 1kg (Exp: 2026-10-05) - Margin ~Rs.7,80,000",
         "contract_size_grams": 1000.0,
         "price_unit_grams": 10.0,
         "recommended": False
@@ -63,6 +78,8 @@ class GrowwMCXClient:
         self.access_token = access_token.strip() if access_token else ""
         self.groww_api: Optional[Any] = None
         self.is_authenticated = False
+        self._cached_symbols: Optional[List[Dict[str, Any]]] = None
+        self._cache_time: float = 0.0
         
         self.init_groww_sdk()
 
@@ -121,24 +138,77 @@ class GrowwMCXClient:
                 return False, "Groww Authentication Failed: Token has expired or is invalid.", {}
             return False, f"Groww Verification Error: {err_str}", {}
 
-    def get_available_symbols(self) -> List[Dict[str, Any]]:
+    def get_available_symbols(self, force_refresh: bool = False) -> List[Dict[str, Any]]:
         """
-        Returns selectable MCX Gold commodity contracts.
-        Queries live Groww expiries if authenticated.
+        Fetches selectable MCX Gold & Silver commodity contracts directly from Groww's live instrument master.
+        Caches results for 30 minutes unless force_refresh is requested.
         """
-        symbols = list(DEFAULT_MCX_GOLD_SYMBOLS)
-        if self.is_authenticated and self.groww_api:
-            try:
-                # Try fetching live active expiries from Groww
-                expiries_resp = self.groww_api.get_expiries(exchange=GrowwAPI.EXCHANGE_MCX, underlying_symbol="GOLDGUINEA")
-                if isinstance(expiries_resp, dict) and "expiries" in expiries_resp:
-                    log_event("INFO", "POLLING", f"Discovered live Groww expiries for GOLDGUINEA: {expiries_resp['expiries'][:3]}")
-            except Exception as e:
-                # Non-critical discovery error; defaults remain active
-                pass
-        return symbols
+        now = time.time()
+        if self._cached_symbols and (now - self._cache_time < 1800) and not force_refresh:
+            return self._cached_symbols
 
-    def fetch_live_mcx_ltp(self, trading_symbol: str = "GOLDGUINEA26OCTFUT") -> Optional[float]:
+        try:
+            import pandas as pd
+            url = GrowwAPI.INSTRUMENT_CSV_URL if GROWW_SDK_AVAILABLE and hasattr(GrowwAPI, "INSTRUMENT_CSV_URL") else "https://growwapi-assets.groww.in/instruments/instrument.csv"
+            log_event("INFO", "SYSTEM", "Fetching live MCX instruments directly from Groww API...")
+            df = pd.read_csv(url, low_memory=False)
+
+            mcx_fut = df[(df['exchange'] == 'MCX') & (df['instrument_type'] == 'FUT')]
+            gold_df = mcx_fut[mcx_fut['trading_symbol'].str.contains('GOLD|SILVERMIC', case=False, na=False)].copy()
+
+            today_str = datetime.now().strftime("%Y-%m-%d")
+            active_df = gold_df[gold_df['expiry_date'] >= today_str].sort_values('expiry_date')
+
+            discovered = []
+            for _, row in active_df.iterrows():
+                sym = str(row['trading_symbol']).strip()
+                exp = str(row['expiry_date']).strip()
+
+                if "GOLDGUINEA" in sym:
+                    desc = f"MCX Gold Guinea 8g (Exp: {exp}) - Margin ~Rs.6,200 [Fits Rs.25k]"
+                    c_size, p_unit = 8.0, 8.0
+                    rec = (len(discovered) == 0) or ("SEP" in sym)
+                elif "GOLDPETAL" in sym:
+                    desc = f"MCX Gold Petal 1g (Exp: {exp}) - Margin ~Rs.800 [Fits Rs.25k]"
+                    c_size, p_unit = 1.0, 1.0
+                    rec = False
+                elif "GOLDTEN" in sym:
+                    desc = f"MCX Gold Ten 10g (Exp: {exp}) - Margin ~Rs.7,800 [Fits Rs.25k]"
+                    c_size, p_unit = 10.0, 10.0
+                    rec = False
+                elif "GOLDM" in sym:
+                    desc = f"MCX Gold Mini 100g (Exp: {exp}) - Margin ~Rs.78,000 [Needs >Rs.80k]"
+                    c_size, p_unit = 100.0, 10.0
+                    rec = False
+                elif "SILVERMIC" in sym:
+                    desc = f"MCX Silver Micro 1kg (Exp: {exp}) - Margin ~Rs.8,500 [Fits Rs.25k]"
+                    c_size, p_unit = 1000.0, 1000.0
+                    rec = False
+                else:
+                    desc = f"MCX Gold Mega 1kg (Exp: {exp}) - Margin ~Rs.7,80,000"
+                    c_size, p_unit = 1000.0, 10.0
+                    rec = False
+
+                discovered.append({
+                    "symbol": sym,
+                    "display_name": desc,
+                    "contract_size_grams": c_size,
+                    "price_unit_grams": p_unit,
+                    "expiry_date": exp,
+                    "recommended": rec
+                })
+
+            if discovered:
+                self._cached_symbols = discovered
+                self._cache_time = now
+                log_event("INFO", "SYSTEM", f"Discovered {len(discovered)} live MCX commodity contracts from Groww!")
+                return discovered
+        except Exception as e:
+            log_event("WARNING", "SYSTEM", f"Could not query live Groww instrument list: {e}. Using standard verified contracts.")
+
+        return list(DEFAULT_MCX_GOLD_SYMBOLS)
+
+    def fetch_live_mcx_ltp(self, trading_symbol: str = "GOLDGUINEA30SEP26FUT") -> Optional[float]:
         """
         Fetches live Last Traded Price (LTP) for MCX Gold Mini/Guinea from Groww API.
         """

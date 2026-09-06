@@ -76,11 +76,11 @@ def get_status():
     }
 
 @app.get("/api/groww/symbols")
-def get_groww_symbols():
+def get_groww_symbols(refresh: bool = False):
     """
-    Returns available MCX contracts for user selection.
+    Returns available MCX contracts for user selection directly from Groww API.
     """
-    return {"symbols": algo_engine.groww_client.get_available_symbols()}
+    return {"symbols": algo_engine.groww_client.get_available_symbols(force_refresh=refresh)}
 
 @app.get("/api/logs")
 def get_logs(limit: int = 50):
@@ -128,7 +128,7 @@ class ConfigUpdateModel(BaseModel):
     oanda_account_id: str
     oanda_environment: str = "practice"
     groww_access_token: Optional[str] = ""
-    groww_trading_symbol: Optional[str] = "GOLDGUINEA26OCTFUT"
+    groww_trading_symbol: Optional[str] = "GOLDGUINEA30SEP26FUT"
     timeframe: str = "M5"
     selected_strategy: str = "EMA_CROSSOVER"
     starting_balance: float = 25000.0

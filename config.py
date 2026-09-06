@@ -19,8 +19,8 @@ class OandaConfig:
 
 @dataclass
 class McxConfig:
-    instrument_name: str = "MCX_GOLDGUINEA_OCT2026"
-    groww_trading_symbol: str = "GOLDGUINEA26OCTFUT"
+    instrument_name: str = "MCX_GOLDGUINEA_SEP2026"
+    groww_trading_symbol: str = "GOLDGUINEA30SEP26FUT"
     groww_api_key: str = field(default_factory=lambda: os.getenv("GROWW_API_KEY", ""))
     groww_api_secret: str = field(default_factory=lambda: os.getenv("GROWW_API_SECRET", ""))
     groww_access_token: str = field(default_factory=lambda: os.getenv("GROWW_ACCESS_TOKEN", ""))
