@@ -75,12 +75,29 @@ def get_status():
         "available_symbols": algo_engine.groww_client.get_available_symbols()
     }
 
+class SymbolsRequestModel(BaseModel):
+    groww_access_token: Optional[str] = None
+    refresh: Optional[bool] = True
+
 @app.get("/api/groww/symbols")
-def get_groww_symbols(refresh: bool = False):
+def get_groww_symbols(refresh: bool = False, token: Optional[str] = None):
     """
     Returns available MCX contracts for user selection directly from Groww API.
     """
-    return {"symbols": algo_engine.groww_client.get_available_symbols(force_refresh=refresh)}
+    if token and token.strip():
+        algo_engine.groww_client.access_token = token.strip()
+        algo_engine.groww_client.init_groww_sdk()
+    return {"symbols": algo_engine.groww_client.get_available_symbols(force_refresh=refresh or bool(token))}
+
+@app.post("/api/groww/symbols")
+def post_groww_symbols(req: SymbolsRequestModel):
+    """
+    Accepts Groww access token and returns freshly fetched MCX contracts.
+    """
+    if req.groww_access_token and req.groww_access_token.strip():
+        algo_engine.groww_client.access_token = req.groww_access_token.strip()
+        algo_engine.groww_client.init_groww_sdk()
+    return {"symbols": algo_engine.groww_client.get_available_symbols(force_refresh=req.refresh if req.refresh is not None else True)}
 
 @app.get("/api/logs")
 def get_logs(limit: int = 50):
@@ -96,6 +113,7 @@ class TokenVerifyModel(BaseModel):
 def validate_tokens(req: TokenVerifyModel):
     """
     Actively checks credentials with live OANDA and Groww servers.
+    Automatically refreshes live MCX symbols when Groww token is valid.
     """
     o_tok = req.oanda_api_token if req.oanda_api_token is not None else algo_engine.config.oanda.api_token
     o_acc = req.oanda_account_id if req.oanda_account_id is not None else algo_engine.config.oanda.account_id
@@ -104,6 +122,12 @@ def validate_tokens(req: TokenVerifyModel):
 
     o_valid, o_msg, o_data = algo_engine.oanda_client.validate_token(o_tok, o_acc, o_env)
     g_valid, g_msg, g_data = algo_engine.groww_client.validate_token(g_tok)
+
+    symbols = []
+    if g_valid:
+        algo_engine.groww_client.access_token = g_tok
+        algo_engine.groww_client.init_groww_sdk()
+        symbols = algo_engine.groww_client.get_available_symbols(force_refresh=True)
 
     result = {
         "oanda": {
@@ -115,7 +139,8 @@ def validate_tokens(req: TokenVerifyModel):
             "valid": g_valid,
             "message": g_msg,
             "details": {"name": g_data.get("name") or g_data.get("userName") or ""} if g_data else {}
-        }
+        },
+        "symbols": symbols
     }
     algo_engine.token_status = {
         "oanda": {"valid": o_valid, "message": o_msg},

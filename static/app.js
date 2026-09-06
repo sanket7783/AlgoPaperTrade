@@ -29,6 +29,42 @@ window.updateTokenBadges = function(tokenStatus) {
     }
 };
 
+window.loadSymbols = async function(selectedSymbol = "", forceRefresh = false, token = "") {
+    const symbolsSelect = document.getElementById("growwSymbol");
+    const refreshBtn = document.getElementById("refreshSymbolsBtn");
+    const currentToken = (token || document.getElementById("growwToken")?.value || "").trim();
+
+    try {
+        if (refreshBtn) refreshBtn.innerText = "⏳ Loading...";
+        
+        let res;
+        if (currentToken) {
+            res = await fetch("/api/groww/symbols", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ groww_access_token: currentToken, refresh: forceRefresh })
+            });
+        } else {
+            const url = forceRefresh ? "/api/groww/symbols?refresh=true" : "/api/groww/symbols";
+            res = await fetch(url);
+        }
+
+        const data = await res.json();
+        if (data.symbols && symbolsSelect) {
+            const currentVal = selectedSymbol || symbolsSelect.value;
+            symbolsSelect.innerHTML = data.symbols.map(s => {
+                const isSel = s.symbol === currentVal ? "selected" : "";
+                return `<option value="${s.symbol}" ${isSel}>${s.display_name}</option>`;
+            }).join("");
+            console.log(`[AlgoPaperTrade] Loaded ${data.symbols.length} live contracts from Groww`);
+        }
+    } catch (e) {
+        console.error("[AlgoPaperTrade] Error loading symbols from Groww:", e);
+    } finally {
+        if (refreshBtn) refreshBtn.innerText = "🔄 Refresh";
+    }
+};
+
 window.handleVerifyTokens = async function() {
     console.log("[AlgoPaperTrade] handleVerifyTokens triggered");
     const verifyBtn = document.getElementById("verifyTokensBtn");
@@ -67,13 +103,27 @@ window.handleVerifyTokens = async function() {
         const oandaOk = data.oanda && data.oanda.valid;
         const growwOk = data.groww && data.groww.valid;
 
+        // If Groww token is valid and symbols returned, update dropdown immediately!
+        if (data.symbols && data.symbols.length > 0) {
+            const symbolsSelect = document.getElementById("growwSymbol");
+            if (symbolsSelect) {
+                const curVal = symbolsSelect.value;
+                symbolsSelect.innerHTML = data.symbols.map(s => {
+                    const isSel = s.symbol === curVal ? "selected" : "";
+                    return `<option value="${s.symbol}" ${isSel}>${s.display_name}</option>`;
+                }).join("");
+            }
+        } else if (growwOk) {
+            await window.loadSymbols("", true, payload.groww_access_token);
+        }
+
         let html = `<div><strong>OANDA:</strong> ${data.oanda ? data.oanda.message : "Not tested"}</div>`;
         html += `<div><strong>Groww:</strong> ${data.groww ? data.groww.message : "Not tested"}</div>`;
 
         if (feedback) {
             if (oandaOk && growwOk) {
                 feedback.className = "verify-feedback success";
-                html += `<div style="margin-top:6px; font-weight:bold;">🎉 Both live broker connections verified!</div>`;
+                html += `<div style="margin-top:6px; font-weight:bold;">🎉 Both live broker connections verified! Live MCX contracts updated in dropdown.</div>`;
             } else {
                 feedback.className = "verify-feedback error";
                 html += `<div style="margin-top:6px; font-weight:bold;">⚠️ Token check reported issues. Review messages above.</div>`;
@@ -505,6 +555,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveBtn = document.getElementById("saveConfigBtn");
     if (saveBtn) {
         saveBtn.addEventListener("click", window.handleSaveConfig);
+    }
+
+    // Auto-fetch symbols from Groww whenever Groww token is entered or pasted
+    const growwTokenInput = document.getElementById("growwToken");
+    if (growwTokenInput) {
+        let debounceTimer;
+        const onTokenInput = () => {
+            clearTimeout(debounceTimer);
+            const tok = growwTokenInput.value.trim();
+            if (tok.length > 15) {
+                debounceTimer = setTimeout(async () => {
+                    const feedback = document.getElementById("tokenVerifyFeedback");
+                    if (feedback) {
+                        feedback.style.display = "block";
+                        feedback.className = "verify-feedback";
+                        feedback.innerHTML = "<em>⏳ Groww token entered! Fetching live MCX Gold contracts from Groww...</em>";
+                    }
+                    await window.loadSymbols("", true, tok);
+                    if (feedback) {
+                        feedback.className = "verify-feedback success";
+                        feedback.innerHTML = "<div><strong>✅ Groww token received! Live MCX Gold contracts updated in dropdown.</strong></div>";
+                    }
+                }, 400);
+            }
+        };
+
+        growwTokenInput.addEventListener("input", onTokenInput);
+        growwTokenInput.addEventListener("paste", () => setTimeout(onTokenInput, 100));
+        growwTokenInput.addEventListener("change", onTokenInput);
     }
 
     function renderTradeLogTable(trades) {
