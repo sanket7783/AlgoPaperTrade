@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Gold to Groww MCX Gold Algo Paper Trader</title>
+    <title>Forex Gold to Groww MCX Gold Guinea Algo Paper Trader</title>
     <!-- Google Fonts & Lightweight Charts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
                 <div class="gold-icon">⚜</div>
                 <div>
                     <h1>GOLD<span class="highlight">ALGO</span></h1>
-                    <p class="subtitle">OANDA ⚡ Groww MCX</p>
+                    <p class="subtitle">OANDA ⚡ Groww MCX Trader</p>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                 <h3>Account & Risk Controls</h3>
                 <div class="form-group">
                     <label for="balanceInput">Paper Balance (INR)</label>
-                    <input type="number" id="balanceInput" class="input-field" value="500000" step="10000">
+                    <input type="number" id="balanceInput" class="input-field" value="25000" step="1000">
                 </div>
                 <div class="form-row">
                     <div class="form-group half">
@@ -65,22 +65,31 @@
             </div>
 
             <div class="control-section">
-                <h3>API Tokens & Credentials</h3>
+                <h3>Groww & OANDA Credentials</h3>
                 <div class="form-group">
-                    <label for="oandaToken">OANDA API Token</label>
+                    <label for="growwToken">Groww Access Token</label>
+                    <input type="password" id="growwToken" class="input-field" placeholder="Paste Groww Access Token">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="growwSymbol">Select Groww MCX Contract</label>
+                        <button type="button" id="refreshSymbolsBtn" class="link-btn" title="Refresh available contracts from Groww">🔄 Refresh</button>
+                    </div>
+                    <select id="growwSymbol" class="input-field">
+                        <option value="GOLDGUINEA26OCTFUT" selected>MCX Gold Guinea (8g) - Margin ~₹6,200 [Fits ₹25k]</option>
+                        <option value="GOLDPETAL26OCTFUT">MCX Gold Petal (1g) - Margin ~₹800 [Fits ₹25k]</option>
+                        <option value="SILVERMIC26NOV26FUT">MCX Silver Micro (1kg) - Margin ~₹8,500 [Fits ₹25k]</option>
+                        <option value="GOLDM26OCTFUT">MCX Gold Mini (100g) - Margin ~₹78,000 [Needs >₹80k]</option>
+                        <option value="GOLD26OCTFUT">MCX Gold Mega (1kg) - Margin ~₹7,80,000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="oandaToken">OANDA API Token (Forex Data)</label>
                     <input type="password" id="oandaToken" class="input-field" value="DEMO_TOKEN_PLACEHOLDER">
                 </div>
                 <div class="form-group">
                     <label for="oandaAccount">OANDA Account ID</label>
                     <input type="text" id="oandaAccount" class="input-field" value="101-001-12345678-001">
-                </div>
-                <div class="form-group">
-                    <label for="growwToken">Groww Access Token</label>
-                    <input type="password" id="growwToken" class="input-field" placeholder="Optional Groww Access Token">
-                </div>
-                <div class="form-group">
-                    <label for="growwSymbol">Groww MCX Symbol</label>
-                    <input type="text" id="growwSymbol" class="input-field" value="GOLDM26OCTFUT">
                 </div>
                 <button id="saveConfigBtn" class="btn btn-secondary">💾 Save & Update Settings</button>
             </div>
@@ -105,17 +114,17 @@
                 </div>
 
                 <div class="metric-box">
-                    <span class="label">MCX Gold Mini (<span id="mcxSourceBadge">DERIVED</span>)</span>
+                    <span class="label">MCX Gold Contract (<span id="mcxSourceBadge">DERIVED</span>)</span>
                     <div class="value-group">
-                        <span id="mcxPrice" class="value">₹77,180.00</span>
-                        <span class="unit">INR/10g</span>
+                        <span id="mcxPrice" class="value">₹61,744.00</span>
+                        <span class="unit" id="mcxPriceUnit">INR</span>
                     </div>
                 </div>
 
                 <div class="metric-box">
                     <span class="label">Account Equity</span>
                     <div class="value-group">
-                        <span id="totalEquity" class="value">₹5,00,000.00</span>
+                        <span id="totalEquity" class="value">₹25,000.00</span>
                     </div>
                 </div>
 
@@ -165,14 +174,14 @@
                     <div class="manual-execution-section">
                         <h3>Groww Paper Execution</h3>
                         <div class="lots-picker">
-                            <label>Lot Size (1 Lot = 100g)</label>
-                            <input type="number" id="manualLots" value="1" min="1" max="10" class="input-field">
+                            <label>Lot Size</label>
+                            <input type="number" id="manualLots" value="1" min="1" max="5" class="input-field">
                         </div>
                         <div class="action-buttons">
-                            <button id="manualBuyBtn" class="btn btn-buy">BUY GOLDM</button>
-                            <button id="manualSellBtn" class="btn btn-sell">SELL GOLDM</button>
+                            <button id="manualBuyBtn" class="btn btn-buy">BUY CONTRACT</button>
+                            <button id="manualSellBtn" class="btn btn-sell">SELL CONTRACT</button>
                         </div>
-                        <button id="testAutoSignalBtn" class="btn btn-secondary">⚡ Test Auto Signal Execution</button>
+                        <button id="testAutoSignalBtn" class="btn btn-secondary">⚡ Test Auto Signal (BUY/SELL)</button>
                         <button id="manualSquareOffBtn" class="btn btn-squareoff">SQUARE OFF POSITION</button>
                     </div>
 
@@ -181,19 +190,19 @@
                         <div id="noPositionMsg" class="empty-state">No open positions</div>
                         <div id="positionDetails" class="position-details hidden">
                             <div class="pos-row">
-                                <span>Instrument:</span> <strong id="posInstrument">MCX_GOLDM</strong>
+                                <span>Instrument:</span> <strong id="posInstrument">MCX_GOLDGUINEA</strong>
                             </div>
                             <div class="pos-row">
                                 <span>Side & Lots:</span> <strong id="posSideLots">BUY (1 Lot)</strong>
                             </div>
                             <div class="pos-row">
-                                <span>Entry Price:</span> <span id="posEntryPrice">₹77,180.00</span>
+                                <span>Entry Price:</span> <span id="posEntryPrice">₹61,744.00</span>
                             </div>
                             <div class="pos-row">
                                 <span>Unrealized MTM:</span> <span id="posUnrealizedPnl" class="pnl-value">₹0.00</span>
                             </div>
                             <div class="pos-row">
-                                <span>SL / TP Target:</span> <span id="posSlTp">SL: ₹76,794 | TP: ₹77,951</span>
+                                <span>SL / TP Target:</span> <span id="posSlTp">SL: ₹61,435 | TP: ₹62,361</span>
                             </div>
                         </div>
                     </div>
@@ -214,7 +223,7 @@
             <!-- Trade History & CSV Log Table -->
             <section class="table-card glass-card">
                 <div class="card-header">
-                    <h2>Executed Paper Trades Log</h2>
+                    <h2>Executed Paper Trades Log (Both BUY & SELL)</h2>
                     <span class="hint">Auto-synced with <code>trades_log.csv</code></span>
                 </div>
                 <div class="table-container">
@@ -224,13 +233,13 @@
                                 <th>Date & Time</th>
                                 <th>Instrument</th>
                                 <th>Strategy</th>
-                                <th>Action</th>
+                                <th>Trade Action</th>
                                 <th>Lots</th>
                                 <th>Entry Price (₹)</th>
-                                <th>Exit Price (₹)</th>
+                                <th>Exit / Exec Price (₹)</th>
                                 <th>Forex Ref ($)</th>
                                 <th>Trade PnL (₹)</th>
-                                <th>Balance (₹)</th>
+                                <th>Account Balance (₹)</th>
                                 <th>Status</th>
                             </tr>
                         </thead>

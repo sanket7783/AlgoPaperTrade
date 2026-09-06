@@ -1,0 +1,40 @@
+{
+    "oanda": {
+        "api_token": "DEMO_TOKEN_PLACEHOLDER",
+        "account_id": "101-001-12345678-001",
+        "environment": "practice",
+        "instrument": "XAU_USD",
+        "timeframe": "M5"
+    },
+    "mcx": {
+        "instrument_name": "MCX_GOLDGUINEA_OCT2026",
+        "groww_trading_symbol": "GOLDGUINEA26OCTFUT",
+        "groww_api_key": "",
+        "groww_api_secret": "",
+        "groww_access_token": "",
+        "contract_size_grams": 8.0,
+        "price_unit_grams": 8.0,
+        "tick_size": 1.0,
+        "starting_balance": 25000.0,
+        "usd_inr_rate": 83.5,
+        "import_duty_multiplier": 1.15
+    },
+    "strategy": {
+        "selected_strategy": "EMA_CROSSOVER",
+        "fast_ema": 9,
+        "slow_ema": 21,
+        "rsi_period": 14,
+        "rsi_overbought": 70.0,
+        "rsi_oversold": 30.0,
+        "bollinger_period": 20,
+        "bollinger_std": 2.0,
+        "atr_period": 14,
+        "breakout_period": 20,
+        "lead_lag_threshold_pct": 0.15,
+        "stop_loss_pct": 0.5,
+        "take_profit_pct": 1.0,
+        "max_lots_per_trade": 1
+    },
+    "csv_file_path": "trades_log.csv",
+    "update_interval_sec": 2.0
+}

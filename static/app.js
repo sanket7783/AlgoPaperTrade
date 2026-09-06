@@ -49,7 +49,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 2. WebSocket Connection for Real-Time Stream
+    // 2. Fetch and Populate Symbols Dropdown
+    async function loadSymbols(selectedSymbol = "") {
+        try {
+            const res = await fetch("/api/groww/symbols");
+            const data = await res.json();
+            const symbolsSelect = document.getElementById("growwSymbol");
+            if (data.symbols && symbolsSelect) {
+                const currentVal = selectedSymbol || symbolsSelect.value;
+                symbolsSelect.innerHTML = data.symbols.map(s => {
+                    const isSel = s.symbol === currentVal ? "selected" : "";
+                    return `<option value="${s.symbol}" ${isSel}>${s.display_name}</option>`;
+                }).join("");
+            }
+        } catch (e) {
+            console.error("Error loading symbols:", e);
+        }
+    }
+
+    const refreshBtn = document.getElementById("refreshSymbolsBtn");
+    if (refreshBtn) {
+        refreshBtn.addEventListener("click", async () => {
+            refreshBtn.innerText = "⏳ Loading...";
+            await loadSymbols();
+            refreshBtn.innerText = "🔄 Refresh";
+        });
+    }
+
+    // 3. WebSocket Connection for Real-Time Stream
     let socket;
     function connectWebSocket() {
         const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -77,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     connectWebSocket();
 
-    // 3. UI Update Logic
+    // 4. UI Update Logic
     function updateDashboard(data) {
         if (!data) return;
 
@@ -129,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 posDetails.classList.remove("hidden");
 
                 document.getElementById("posInstrument").innerText = pos.instrument;
-                document.getElementById("posSideLots").innerText = `${pos.side} (${pos.lots} Lot${pos.lots > 1 ? 's' : ''})`;
+                document.getElementById("posSideLots").innerText = `${pos.side} (${pos.lots} Lot)`;
                 document.getElementById("posEntryPrice").innerText = `₹${pos.entry_price.toFixed(2)}`;
 
                 const uPnlEl = document.getElementById("posUnrealizedPnl");
@@ -163,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
             candleSeries.setData(formatted);
         }
 
-        // Render Recent Activity Logs
         if (data.recent_logs) {
             renderActivityLogs(data.recent_logs);
         }
@@ -203,9 +229,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (cfg.mcx.groww_access_token) {
                     document.getElementById("growwToken").value = cfg.mcx.groww_access_token;
                 }
-                if (cfg.mcx.groww_trading_symbol) {
-                    document.getElementById("growwSymbol").value = cfg.mcx.groww_trading_symbol;
-                }
+                await loadSymbols(cfg.mcx.groww_trading_symbol);
+            } else {
+                await loadSymbols();
             }
 
             if (data.trade_history) {
@@ -217,6 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } catch (err) {
             console.error("[Init Status Error]", err);
+            await loadSymbols();
         }
     }
 
@@ -230,21 +257,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         tbody.innerHTML = trades.slice().reverse().map(t => {
-            const actionClass = t.Action === 'BUY' ? 'tag-buy' : 'tag-sell';
-            const pnlClass = parseFloat(t["Trade PnL (INR)"]) >= 0 ? 'profit' : 'loss';
+            const actionStr = t.Action || "";
+            const isBuy = actionStr.includes("BUY");
+            const isOpened = t.Status === "OPENED";
+            
+            let actionBadgeClass = isBuy ? "tag-buy" : "tag-sell";
+            let pnlClass = "neutral";
+            const pnlVal = parseFloat(t["Trade PnL (INR)"]) || 0;
+            if (pnlVal > 0) pnlClass = "profit";
+            else if (pnlVal < 0) pnlClass = "loss";
+
             return `
                 <tr>
                     <td>${t.Date} ${t.Time}</td>
-                    <td>${t["Instrument Name"]}</td>
+                    <td><strong>${t["Instrument Name"]}</strong></td>
                     <td>${t.Strategy}</td>
-                    <td class="${actionClass}">${t.Action}</td>
+                    <td class="${actionBadgeClass}">${actionStr}</td>
                     <td>${t.Lots}</td>
                     <td>₹${parseFloat(t["Entry Price (INR)"]).toFixed(2)}</td>
-                    <td>₹${parseFloat(t["Exit Price (INR)"]).toFixed(2)}</td>
+                    <td>${isOpened ? '-' : '₹' + parseFloat(t["Exit Price (INR)"]).toFixed(2)}</td>
                     <td>$${parseFloat(t["Forex Ref Price ($)"]).toFixed(2)}</td>
-                    <td class="${pnlClass}">₹${parseFloat(t["Trade PnL (INR)"]).toFixed(2)}</td>
-                    <td>₹${parseFloat(t["Account Balance (INR)"]).toFixed(2)}</td>
-                    <td>${t.Status}</td>
+                    <td class="${pnlClass}">${isOpened ? 'Active' : (pnlVal >= 0 ? '+₹' : '-₹') + Math.abs(pnlVal).toFixed(2)}</td>
+                    <td>₹${parseFloat(t["Account Balance (INR)"]).toLocaleString('en-IN', {minimumFractionDigits: 2})}</td>
+                    <td><span class="status-badge ${t.Status}">${t.Status}</span></td>
                 </tr>
             `;
         }).join("");
@@ -258,19 +293,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderTradeLogTable(data.trade_history);
             }
         } catch (e) {}
-    }, 4000);
+    }, 3000);
 
     // Save Config Form
     document.getElementById("saveConfigBtn").addEventListener("click", async () => {
+        const balanceVal = parseFloat(document.getElementById("balanceInput").value) || 25000;
+        const selectedSym = document.getElementById("growwSymbol").value;
         const payload = {
             oanda_api_token: document.getElementById("oandaToken").value,
             oanda_account_id: document.getElementById("oandaAccount").value,
             oanda_environment: "practice",
             groww_access_token: document.getElementById("growwToken").value,
-            groww_trading_symbol: document.getElementById("growwSymbol").value,
+            groww_trading_symbol: selectedSym,
             timeframe: document.getElementById("timeframeSelect").value,
             selected_strategy: document.getElementById("strategySelect").value,
-            starting_balance: parseFloat(document.getElementById("balanceInput").value),
+            starting_balance: balanceVal,
             stop_loss_pct: parseFloat(document.getElementById("slInput").value),
             take_profit_pct: parseFloat(document.getElementById("tpInput").value)
         };
@@ -283,7 +320,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             const data = await res.json();
             if (data.status === "SUCCESS") {
-                alert("Settings & Credentials updated successfully!");
+                document.getElementById("totalEquity").innerText = `₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+                document.getElementById("realizedPnl").innerText = "₹0.00";
+                document.getElementById("realizedPnl").className = "value neutral";
+                
+                const tokenStatus = payload.groww_access_token ? "Configured & Active" : "Not Provided";
+                alert(`✅ Contract & Settings Saved!\n\n• Selected Contract: ${selectedSym}\n• Account Balance reset to: ₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}\n• Groww Token: ${tokenStatus}\n• Strategy: ${payload.selected_strategy}\n\nThe engine updated live without needing a restart!`);
             }
         } catch (err) {
             alert("Failed to update settings: " + err);
@@ -312,7 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
         await triggerManualTrade("SQUARE_OFF", 1);
     });
 
-    // Test Auto Signal Execution
+    // Test Auto Signal Execution (Toggles between BUY and SELL)
+    let nextSignalSide = "BUY";
     const testBtn = document.getElementById("testAutoSignalBtn");
     if (testBtn) {
         testBtn.addEventListener("click", async () => {
@@ -320,10 +363,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const res = await fetch("/api/trade/simulate_signal", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ signal: "BUY" })
+                    body: JSON.stringify({ signal: nextSignalSide })
                 });
                 const data = await res.json();
-                alert(`Auto Signal Simulated: ${data.status} for ${data.side} @ ₹${data.entry_price}`);
+                alert(`Auto Signal Simulated: ${data.status} for ${data.side} @ ₹${data.entry_price}\n(Next test signal will be ${nextSignalSide === "BUY" ? "SELL" : "BUY"})`);
+                nextSignalSide = nextSignalSide === "BUY" ? "SELL" : "BUY";
             } catch (err) {
                 alert("Error triggering auto signal test: " + err);
             }

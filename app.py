@@ -17,6 +17,9 @@ app = FastAPI(title="Forex Gold to MCX Gold Algo Paper Trader", version="1.0.0")
 config = AppConfig.load_from_file()
 algo_engine = AlgoTradingEngine(config)
 
+if not os.path.exists("config.json"):
+    config.save_to_file("config.json")
+
 # WebSocket Connection Manager
 class ConnectionManager:
     def __init__(self):
@@ -63,8 +66,16 @@ def get_status():
         "config": algo_engine.config,
         "state": tick_data,
         "trade_history": algo_engine.mcx_engine.trade_history,
-        "recent_logs": get_recent_logs(50)
+        "recent_logs": get_recent_logs(50),
+        "available_symbols": algo_engine.groww_client.get_available_symbols()
     }
+
+@app.get("/api/groww/symbols")
+def get_groww_symbols():
+    """
+    Returns available MCX contracts for user selection.
+    """
+    return {"symbols": algo_engine.groww_client.get_available_symbols()}
 
 @app.get("/api/logs")
 def get_logs(limit: int = 50):
@@ -73,29 +84,51 @@ def get_logs(limit: int = 50):
 class ConfigUpdateModel(BaseModel):
     oanda_api_token: str
     oanda_account_id: str
-    oanda_environment: str
+    oanda_environment: str = "practice"
     groww_access_token: Optional[str] = ""
-    groww_trading_symbol: Optional[str] = "GOLDM26OCTFUT"
-    timeframe: str
-    selected_strategy: str
-    starting_balance: float
-    stop_loss_pct: float
-    take_profit_pct: float
+    groww_trading_symbol: Optional[str] = "GOLDGUINEA26OCTFUT"
+    timeframe: str = "M5"
+    selected_strategy: str = "EMA_CROSSOVER"
+    starting_balance: float = 25000.0
+    stop_loss_pct: float = 0.5
+    take_profit_pct: float = 1.0
     fast_ema: int = 9
     slow_ema: int = 21
 
 @app.post("/api/config")
 def update_config(cfg: ConfigUpdateModel):
     current = algo_engine.config
-    current.oanda.api_token = cfg.oanda_api_token
-    current.oanda.account_id = cfg.oanda_account_id
+    current.oanda.api_token = cfg.oanda_api_token.strip()
+    current.oanda.account_id = cfg.oanda_account_id.strip()
     current.oanda.environment = cfg.oanda_environment
     current.oanda.timeframe = cfg.timeframe
     
     if cfg.groww_access_token is not None:
-        current.mcx.groww_access_token = cfg.groww_access_token
+        current.mcx.groww_access_token = cfg.groww_access_token.strip()
+    
+    # Update symbol and auto-adjust contract specification
     if cfg.groww_trading_symbol:
-        current.mcx.groww_trading_symbol = cfg.groww_trading_symbol
+        sym = cfg.groww_trading_symbol.strip()
+        current.mcx.groww_trading_symbol = sym
+        
+        if "GOLDGUINEA" in sym:
+            current.mcx.instrument_name = f"MCX_{sym}"
+            current.mcx.contract_size_grams = 8.0
+            current.mcx.price_unit_grams = 8.0
+        elif "GOLDPETAL" in sym:
+            current.mcx.instrument_name = f"MCX_{sym}"
+            current.mcx.contract_size_grams = 1.0
+            current.mcx.price_unit_grams = 1.0
+        elif "GOLDM" in sym:
+            current.mcx.instrument_name = f"MCX_{sym}"
+            current.mcx.contract_size_grams = 100.0
+            current.mcx.price_unit_grams = 10.0
+        elif "SILVERMIC" in sym:
+            current.mcx.instrument_name = f"MCX_{sym}"
+            current.mcx.contract_size_grams = 1000.0
+            current.mcx.price_unit_grams = 1000.0
+        else:
+            current.mcx.instrument_name = f"MCX_{sym}"
 
     current.strategy.selected_strategy = cfg.selected_strategy
     current.strategy.stop_loss_pct = cfg.stop_loss_pct
@@ -103,14 +136,23 @@ def update_config(cfg: ConfigUpdateModel):
     current.strategy.fast_ema = cfg.fast_ema
     current.strategy.slow_ema = cfg.slow_ema
     
-    if cfg.starting_balance != current.mcx.starting_balance:
-        current.mcx.starting_balance = cfg.starting_balance
-        algo_engine.mcx_engine.account_balance = cfg.starting_balance
+    # Update paper balance
+    current.mcx.starting_balance = cfg.starting_balance
+    algo_engine.mcx_engine.account_balance = cfg.starting_balance
+    algo_engine.mcx_engine.realized_pnl = 0.0
 
     algo_engine.update_config(current)
-    current.save_to_file()
-    log_event("INFO", "SYSTEM", f"Configuration & API tokens updated from UI. Strategy: {cfg.selected_strategy}, Timeframe: {cfg.timeframe}")
-    return {"status": "SUCCESS", "config": current}
+    current.save_to_file("config.json")
+    
+    groww_status = "Configured" if current.mcx.groww_access_token else "Not Set"
+    log_event("INFO", "SYSTEM", f"Settings Saved & Applied Live! Symbol: {current.mcx.groww_trading_symbol} | Balance: ₹{cfg.starting_balance:,.2f} | Groww Token: {groww_status}")
+    
+    return {
+        "status": "SUCCESS",
+        "message": f"Contract set to {current.mcx.groww_trading_symbol} with balance ₹{cfg.starting_balance:,.2f}!",
+        "config": current,
+        "new_balance": algo_engine.mcx_engine.account_balance
+    }
 
 class ManualTradeModel(BaseModel):
     action: str

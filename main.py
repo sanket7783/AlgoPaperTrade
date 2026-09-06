@@ -38,7 +38,7 @@ def run_cli_mode():
                 p = status['open_position']
                 pos_str = f"{p['side']} {p['lots']}L @ INR {p['entry_price']} (MTM: INR {p['unrealized_pnl']:+.2f})"
 
-            print(f"[{timestamp}] XAU/USD: ${forex:7.2f} | MCX GOLDM: INR {mcx:8.2f} | Signal: {sig['signal']:7s} | Equity: INR {status['total_equity']:10.2f} | Pos: {pos_str}")
+            print(f"[{timestamp}] XAU/USD: ${forex:7.2f} | MCX GOLDGUINEA: INR {mcx:8.2f} | Signal: {sig['signal']:7s} | Equity: INR {status['total_equity']:10.2f} | Pos: {pos_str}")
             
             if state.get('executed_trade_event'):
                 print(f"  [TRADE EVENT] {state['executed_trade_event']}")

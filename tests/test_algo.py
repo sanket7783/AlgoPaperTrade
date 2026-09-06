@@ -26,21 +26,21 @@ class TestAlgoPaperTrader(unittest.TestCase):
             os.remove(self.test_csv)
 
     def test_price_conversion(self):
-        # Test XAU/USD to MCX Gold per 10g conversion
+        # Test XAU/USD to MCX Gold Guinea (8g) conversion
         # XAU_USD = $2500, USD_INR = 83.5, duty = 1.15
-        # (2500 / 31.1034768) * 10 * 83.5 * 1.15 = ~77180.34 -> rounded to 77180.0
+        # (2500 / 31.1034768) * 8 * 83.5 * 1.15 = ~61744.27 -> rounded to 61744.0
         mcx_price = self.mcx_engine.convert_xau_to_mcx(2500.0)
-        self.assertGreater(mcx_price, 70000.0)
-        self.assertLess(mcx_price, 90000.0)
+        self.assertGreater(mcx_price, 50000.0)
+        self.assertLess(mcx_price, 75000.0)
 
-    def test_paper_trade_lifecycle(self):
+    def test_paper_trade_lifecycle_both_sides(self):
         initial_balance = self.mcx_engine.account_balance
         
-        # Place BUY Order (1 Lot MCX GOLDM = 100g)
+        # 1. Place BUY Order (1 Lot MCX Gold Guinea = 8g)
         order_res = self.mcx_engine.place_order(
             side="BUY",
             lots=1,
-            mcx_price=77000.0,
+            mcx_price=61700.0,
             forex_price=2500.0,
             signal_source="TEST",
             strategy_name="TEST_STRATEGY",
@@ -50,23 +50,25 @@ class TestAlgoPaperTrader(unittest.TestCase):
         self.assertEqual(order_res["status"], "OPENED")
         self.assertIsNotNone(self.mcx_engine.current_position)
 
-        # Close position at profit (+₹500 per 10g => +₹5,000 PnL for 100g)
+        # 2. Close position at profit (+₹500 per guinea => +₹500 PnL for 8g)
         close_res = self.mcx_engine.close_position(
-            exit_mcx_price=77500.0,
-            exit_forex_price=2515.0,
+            exit_mcx_price=62200.0,
+            exit_forex_price=2520.0,
             strategy_name="TEST_STRATEGY",
             signal_source="TEST",
             reason="TAKE_PROFIT"
         )
-        self.assertEqual(close_res["Trade PnL (INR)"], 5000.0)
-        self.assertEqual(self.mcx_engine.account_balance, initial_balance + 5000.0)
+        self.assertEqual(close_res["Trade PnL (INR)"], 500.0)
+        self.assertEqual(self.mcx_engine.account_balance, initial_balance + 500.0)
 
-        # Verify CSV log record created
+        # 3. Verify that BOTH BUY (ENTRY) and SELL (EXIT) trades are printed/logged
         trades = self.logger.read_all_trades()
-        self.assertEqual(len(trades), 1)
-        self.assertEqual(trades[0]["Instrument Name"], self.config.mcx.instrument_name)
-        self.assertEqual(trades[0]["Action"], "BUY")
-        self.assertEqual(float(trades[0]["Trade PnL (INR)"]), 5000.0)
+        self.assertEqual(len(trades), 2)
+        self.assertEqual(trades[0]["Action"], "BUY (ENTRY)")
+        self.assertEqual(trades[0]["Status"], "OPENED")
+        self.assertEqual(trades[1]["Action"], "SELL (EXIT)")
+        self.assertEqual(trades[1]["Status"], "TAKE_PROFIT")
+        self.assertEqual(float(trades[1]["Trade PnL (INR)"]), 500.0)
 
     def test_strategies_generation(self):
         client = OandaClient()
@@ -74,19 +76,19 @@ class TestAlgoPaperTrader(unittest.TestCase):
         self.assertEqual(len(df), 50)
 
         ema_strat = EMACrossoverStrategy(self.config.strategy)
-        sig1 = ema_strat.generate_signal(df, 77000.0)
+        sig1 = ema_strat.generate_signal(df, 61700.0)
         self.assertIn(sig1["signal"], ["BUY", "SELL", "NEUTRAL"])
 
         lead_lag_strat = LeadLagArbitrageStrategy(self.config.strategy)
-        sig2 = lead_lag_strat.generate_signal(df, 77000.0)
+        sig2 = lead_lag_strat.generate_signal(df, 61700.0)
         self.assertIn(sig2["signal"], ["BUY", "SELL", "NEUTRAL"])
 
         mean_rev_strat = MeanReversionStrategy(self.config.strategy)
-        sig3 = mean_rev_strat.generate_signal(df, 77000.0)
+        sig3 = mean_rev_strat.generate_signal(df, 61700.0)
         self.assertIn(sig3["signal"], ["BUY", "SELL", "NEUTRAL"])
 
         breakout_strat = VolatilityBreakoutStrategy(self.config.strategy)
-        sig4 = breakout_strat.generate_signal(df, 77000.0)
+        sig4 = breakout_strat.generate_signal(df, 61700.0)
         self.assertIn(sig4["signal"], ["BUY", "SELL", "NEUTRAL"])
 
     def test_algo_engine_tick(self):

@@ -15,14 +15,19 @@ class MCXPosition:
         self.stop_loss: Optional[float] = None
         self.take_profit: Optional[float] = None
 
-    def calculate_mtm(self, current_price: float, contract_size_grams: float = 100.0, price_unit_grams: float = 10.0) -> float:
+    def calculate_mtm(self, current_price: float, contract_size_grams: float = 8.0, price_unit_grams: float = 8.0) -> float:
+        """
+        Calculate mark-to-market PnL in INR.
+        For Gold Guinea: 1 Lot = 8g, Price unit = 8g => Multiplier = (8/8) * lots = 1 * lots.
+        If price moves ₹100 per guinea, PnL is ₹100 per lot.
+        """
         multiplier = (contract_size_grams / price_unit_grams) * self.lots
         price_diff = (current_price - self.entry_price) if self.side == "BUY" else (self.entry_price - current_price)
         return price_diff * multiplier
 
 class MCXPaperTradingEngine:
     """
-    Paper Trading Execution Engine simulating Groww MCX Gold Mini (GOLDM) orders.
+    Paper Trading Execution Engine simulating Groww MCX Gold Guinea (8g) orders.
     """
     def __init__(self, config: McxConfig, csv_logger: CSVTradeLogger):
         self.config = config
@@ -33,12 +38,16 @@ class MCXPaperTradingEngine:
         self.trade_history: List[Dict[str, Any]] = []
 
     def convert_xau_to_mcx(self, xau_usd_price: float) -> float:
+        """
+        Converts XAU/USD (per troy oz) to MCX Gold Guinea price per 8 grams in INR.
+        1 troy oz = 31.1034768 grams.
+        """
         grams_per_oz = 31.1034768
         price_per_gram_usd = xau_usd_price / grams_per_oz
-        price_per_10g_inr = (price_per_gram_usd * self.config.price_unit_grams * 
-                             self.config.usd_inr_rate * self.config.import_duty_multiplier)
+        price_per_guinea_inr = (price_per_gram_usd * self.config.price_unit_grams * 
+                                self.config.usd_inr_rate * self.config.import_duty_multiplier)
         tick = self.config.tick_size
-        return round(round(price_per_10g_inr / tick) * tick, 2)
+        return round(round(price_per_guinea_inr / tick) * tick, 2)
 
     def place_order(
         self,
@@ -59,13 +68,13 @@ class MCXPaperTradingEngine:
         # Close existing opposite position if present
         if self.current_position is not None:
             if self.current_position.side != side:
-                log_event("INFO", "ORDER", f"Position Reversal Detected ({self.current_position.side} -> {side}). Closing existing position.")
+                log_event("INFO", "ORDER", f"Position Reversal Detected ({self.current_position.side} -> {side}). Closing existing position first.")
                 self.close_position(mcx_price, forex_price, strategy_name, signal_source, reason="SIGNAL_REVERSAL")
             else:
-                log_event("WARNING", "ORDER", f"Order Rejected: Already holding active {side} position.")
+                log_event("WARNING", "ORDER", f"Order Skipped: Already holding active {side} position.")
                 return {"status": "REJECTED", "reason": "Already in same side position"}
 
-        # Margin check
+        # Margin check: ~10% margin requirement for MCX Gold Guinea (~₹6,200 per lot)
         contract_val = mcx_price * (self.config.contract_size_grams / self.config.price_unit_grams) * lots
         required_margin = contract_val * 0.10
         if required_margin > self.account_balance:
@@ -96,6 +105,24 @@ class MCXPaperTradingEngine:
 
         log_event("INFO", "BOOKING", f"ORDER FILLED & POSITION OPENED: {side} {lots} Lot(s) {position.instrument_name} @ ₹{mcx_price:,.2f} | SL: ₹{position.stop_loss or 0:,.2f} | TP: ₹{position.take_profit or 0:,.2f}")
 
+        # Record and print the entry trade immediately (BUY / SELL)
+        entry_log = self.csv_logger.log_trade(
+            instrument_name=position.instrument_name,
+            signal_source=signal_source,
+            strategy=strategy_name,
+            action=f"{side} (ENTRY)",
+            lots=lots,
+            entry_price=mcx_price,
+            exit_price=mcx_price,
+            forex_ref_price=forex_price,
+            trade_pnl=0.0,
+            realized_total_pnl=self.realized_pnl,
+            account_balance=self.account_balance,
+            status="OPENED",
+            timestamp=now
+        )
+        self.trade_history.append(entry_log)
+
         trade_info = {
             "status": "OPENED",
             "side": side,
@@ -104,7 +131,8 @@ class MCXPaperTradingEngine:
             "forex_price": forex_price,
             "time": now.isoformat(),
             "stop_loss": position.stop_loss,
-            "take_profit": position.take_profit
+            "take_profit": position.take_profit,
+            "trade_log": entry_log
         }
 
         return trade_info
@@ -125,15 +153,17 @@ class MCXPaperTradingEngine:
         
         self.realized_pnl += trade_pnl
         self.account_balance += trade_pnl
+        exit_side = "SELL" if pos.side == "BUY" else "BUY"
         self.current_position = None
 
-        log_event("INFO", "BOOKING", f"POSITION CLOSED ({reason}): {pos.side} {pos.lots} Lot(s) @ Entry ₹{pos.entry_price:,.2f} -> Exit ₹{exit_mcx_price:,.2f} | Trade PnL: ₹{trade_pnl:+,.2f} | New Account Balance: ₹{self.account_balance:,.2f}")
+        log_event("INFO", "BOOKING", f"POSITION CLOSED ({reason}): {exit_side} {pos.lots} Lot(s) @ Exit ₹{exit_mcx_price:,.2f} (Entry: ₹{pos.entry_price:,.2f}) | Trade PnL: ₹{trade_pnl:+,.2f} | Balance: ₹{self.account_balance:,.2f}")
 
-        log_entry = self.csv_logger.log_trade(
+        # Record and print the exit trade (EXIT_BUY / EXIT_SELL)
+        exit_log = self.csv_logger.log_trade(
             instrument_name=pos.instrument_name,
             signal_source=signal_source,
             strategy=strategy_name,
-            action=pos.side,
+            action=f"{exit_side} (EXIT)",
             lots=pos.lots,
             entry_price=pos.entry_price,
             exit_price=exit_mcx_price,
@@ -144,9 +174,9 @@ class MCXPaperTradingEngine:
             status=reason
         )
 
-        log_event("INFO", "SYSTEM", f"CSV Log Appended: {pos.instrument_name} {pos.side} PnL=₹{trade_pnl:+,.2f} written to {self.csv_logger.filepath}")
-        self.trade_history.append(log_entry)
-        return log_entry
+        log_event("INFO", "SYSTEM", f"CSV Log Appended: {pos.instrument_name} {exit_side} PnL=₹{trade_pnl:+,.2f} written to {self.csv_logger.filepath}")
+        self.trade_history.append(exit_log)
+        return exit_log
 
     def update_tick(
         self,
