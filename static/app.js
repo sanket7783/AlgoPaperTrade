@@ -1,51 +1,257 @@
+// Global helper functions attached immediately to window so inline onclick handlers always work
+window.updateTokenBadges = function(tokenStatus) {
+    if (!tokenStatus) return;
+    const growwBadge = document.getElementById("growwTokenBadge");
+    const oandaBadge = document.getElementById("oandaTokenBadge");
+
+    if (tokenStatus.groww && growwBadge) {
+        if (tokenStatus.groww.valid) {
+            growwBadge.className = "pill-badge badge-success";
+            growwBadge.innerText = "Active / Valid";
+        } else {
+            growwBadge.className = "pill-badge badge-error";
+            const isMissing = tokenStatus.groww.message && tokenStatus.groww.message.includes("missing");
+            growwBadge.innerText = isMissing ? "Not Set" : "Invalid / Expired";
+        }
+        growwBadge.title = tokenStatus.groww.message || "";
+    }
+
+    if (tokenStatus.oanda && oandaBadge) {
+        if (tokenStatus.oanda.valid) {
+            oandaBadge.className = "pill-badge badge-success";
+            oandaBadge.innerText = "Active / Valid";
+        } else {
+            oandaBadge.className = "pill-badge badge-error";
+            const isMissing = tokenStatus.oanda.message && tokenStatus.oanda.message.includes("missing");
+            oandaBadge.innerText = isMissing ? "Not Set" : "Invalid / Expired";
+        }
+        oandaBadge.title = tokenStatus.oanda.message || "";
+    }
+};
+
+window.handleVerifyTokens = async function() {
+    console.log("[AlgoPaperTrade] handleVerifyTokens triggered");
+    const verifyBtn = document.getElementById("verifyTokensBtn");
+    const feedback = document.getElementById("tokenVerifyFeedback");
+    
+    if (feedback) {
+        feedback.style.display = "block";
+        feedback.className = "verify-feedback";
+        feedback.innerHTML = "<em>⏳ Testing credentials with live OANDA & Groww APIs...</em>";
+    }
+    if (verifyBtn) {
+        verifyBtn.disabled = true;
+        verifyBtn.innerText = "⏳ Verifying...";
+    }
+
+    const payload = {
+        oanda_api_token: (document.getElementById("oandaToken")?.value || "").trim(),
+        oanda_account_id: (document.getElementById("oandaAccount")?.value || "").trim(),
+        oanda_environment: "practice",
+        groww_access_token: (document.getElementById("growwToken")?.value || "").trim()
+    };
+
+    try {
+        const res = await fetch("/api/tokens/validate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        console.log("[AlgoPaperTrade] Verify result:", data);
+
+        if (window.updateTokenBadges) {
+            window.updateTokenBadges(data);
+        }
+
+        const oandaOk = data.oanda && data.oanda.valid;
+        const growwOk = data.groww && data.groww.valid;
+
+        let html = `<div><strong>OANDA:</strong> ${data.oanda ? data.oanda.message : "Not tested"}</div>`;
+        html += `<div><strong>Groww:</strong> ${data.groww ? data.groww.message : "Not tested"}</div>`;
+
+        if (feedback) {
+            if (oandaOk && growwOk) {
+                feedback.className = "verify-feedback success";
+                html += `<div style="margin-top:6px; font-weight:bold;">🎉 Both live broker connections verified!</div>`;
+            } else {
+                feedback.className = "verify-feedback error";
+                html += `<div style="margin-top:6px; font-weight:bold;">⚠️ Token check reported issues. Review messages above.</div>`;
+            }
+            feedback.innerHTML = html;
+        }
+    } catch (err) {
+        console.error("[AlgoPaperTrade] Verify Tokens Error:", err);
+        if (feedback) {
+            feedback.className = "verify-feedback error";
+            feedback.innerHTML = `<div>❌ Network or server error: ${err.message || err}</div>`;
+        }
+    } finally {
+        if (verifyBtn) {
+            verifyBtn.disabled = false;
+            verifyBtn.innerText = "🔍 Test & Verify Tokens";
+        }
+    }
+};
+
+window.handleSaveConfig = async function() {
+    console.log("[AlgoPaperTrade] handleSaveConfig triggered");
+    const saveBtn = document.getElementById("saveConfigBtn");
+    const feedback = document.getElementById("configSaveFeedback");
+
+    if (feedback) {
+        feedback.style.display = "block";
+        feedback.className = "verify-feedback";
+        feedback.innerHTML = "<em>⏳ Saving and updating live trading engine...</em>";
+    }
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.innerText = "⏳ Saving...";
+    }
+
+    const balanceInput = document.getElementById("balanceInput");
+    const balanceVal = balanceInput ? (parseFloat(balanceInput.value) || 25000) : 25000;
+    const selectedSym = document.getElementById("growwSymbol")?.value || "GOLDGUINEA26OCTFUT";
+    const slInput = document.getElementById("slInput");
+    const tpInput = document.getElementById("tpInput");
+    const liveMarketCheckbox = document.getElementById("liveMarketOnlyCheckbox");
+    const enforceHoursCheckbox = document.getElementById("enforceMarketHoursCheckbox");
+
+    const payload = {
+        oanda_api_token: (document.getElementById("oandaToken")?.value || "").trim(),
+        oanda_account_id: (document.getElementById("oandaAccount")?.value || "").trim(),
+        oanda_environment: "practice",
+        groww_access_token: (document.getElementById("growwToken")?.value || "").trim(),
+        groww_trading_symbol: selectedSym,
+        timeframe: document.getElementById("timeframeSelect")?.value || "M5",
+        selected_strategy: document.getElementById("strategySelect")?.value || "EMA_CROSSOVER",
+        starting_balance: balanceVal,
+        stop_loss_pct: slInput ? (parseFloat(slInput.value) || 0.5) : 0.5,
+        take_profit_pct: tpInput ? (parseFloat(tpInput.value) || 1.0) : 1.0,
+        fast_ema: 9,
+        slow_ema: 21,
+        live_market_only: liveMarketCheckbox ? liveMarketCheckbox.checked : true,
+        enforce_market_hours: enforceHoursCheckbox ? enforceHoursCheckbox.checked : true
+    };
+
+    try {
+        const res = await fetch("/api/config", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        
+        if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData.detail || `Server returned HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log("[AlgoPaperTrade] Config saved:", data);
+
+        const totalEquityEl = document.getElementById("totalEquity");
+        if (totalEquityEl) {
+            totalEquityEl.innerText = `₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+        }
+        const rPnlEl = document.getElementById("realizedPnl");
+        if (rPnlEl) {
+            rPnlEl.innerText = "₹0.00";
+            rPnlEl.className = "value neutral";
+        }
+
+        if (data.token_status && window.updateTokenBadges) {
+            window.updateTokenBadges(data.token_status);
+        }
+
+        const modeStr = payload.live_market_only ? "Strict Live Only" : "Simulation Enabled";
+        const growwStatus = payload.groww_access_token ? "Active Token Provided" : "No Token";
+
+        if (feedback) {
+            feedback.className = "verify-feedback success";
+            feedback.innerHTML = `
+                <div><strong>✅ Settings Applied Live!</strong></div>
+                <div style="font-size:11px; margin-top:4px;">
+                    • Contract: <strong>${selectedSym}</strong><br>
+                    • Mode: <strong>${modeStr}</strong><br>
+                    • Paper Balance: <strong>₹${balanceVal.toLocaleString('en-IN')}</strong><br>
+                    • Groww Token: <strong>${growwStatus}</strong>
+                </div>
+            `;
+        }
+    } catch (err) {
+        console.error("[AlgoPaperTrade] Save Config Error:", err);
+        if (feedback) {
+            feedback.className = "verify-feedback error";
+            feedback.innerHTML = `<div>❌ Failed to save settings: ${err.message || err}</div>`;
+        }
+    } finally {
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.innerText = "💾 Save & Apply Live";
+        }
+    }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Initialize TradingView Lightweight Chart
+    // 1. Initialize TradingView Lightweight Chart with safety checks
     const chartContainer = document.getElementById("tvChartContainer");
     let chart, candleSeries;
 
     function initChart() {
         if (!chartContainer) return;
-        chartContainer.innerHTML = "";
-        chart = LightweightCharts.createChart(chartContainer, {
-            layout: {
-                backgroundColor: 'transparent',
-                textColor: '#8A99AD',
-            },
-            grid: {
-                vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
-                horzLines: { color: 'rgba(255, 255, 255, 0.05)' },
-            },
-            crosshair: {
-                mode: LightweightCharts.CrosshairMode.Normal,
-            },
-            rightPriceScale: {
-                borderColor: 'rgba(255, 255, 255, 0.1)',
-            },
-            timeScale: {
-                borderColor: 'rgba(255, 255, 255, 0.1)',
-                timeVisible: true,
-                secondsVisible: false,
-            },
-        });
+        if (typeof LightweightCharts === "undefined") {
+            console.warn("[AlgoPaperTrade] LightweightCharts CDN not loaded; skipping chart render");
+            chartContainer.innerHTML = "<div style='color:#8A99AD;padding:40px;text-align:center;'>Candlestick chart loading or offline. Trading and settings remain fully active.</div>";
+            return;
+        }
 
-        candleSeries = chart.addCandlestickSeries({
-            upColor: '#10B981',
-            downColor: '#EF4444',
-            borderDownColor: '#EF4444',
-            borderUpColor: '#10B981',
-            wickDownColor: '#EF4444',
-            wickUpColor: '#10B981',
-        });
+        try {
+            chartContainer.innerHTML = "";
+            chart = LightweightCharts.createChart(chartContainer, {
+                layout: {
+                    backgroundColor: 'transparent',
+                    textColor: '#8A99AD',
+                },
+                grid: {
+                    vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                    horzLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                },
+                crosshair: {
+                    mode: LightweightCharts.CrosshairMode.Normal,
+                },
+                rightPriceScale: {
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                },
+                timeScale: {
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    timeVisible: true,
+                    secondsVisible: false,
+                },
+            });
+
+            candleSeries = chart.addCandlestickSeries({
+                upColor: '#10B981',
+                downColor: '#EF4444',
+                borderDownColor: '#EF4444',
+                borderUpColor: '#10B981',
+                wickDownColor: '#EF4444',
+                wickUpColor: '#10B981',
+            });
+        } catch (e) {
+            console.error("[AlgoPaperTrade] Chart initialization error:", e);
+        }
     }
 
     initChart();
 
     window.addEventListener('resize', () => {
         if (chart && chartContainer) {
-            chart.applyOptions({
-                width: chartContainer.clientWidth,
-                height: chartContainer.clientHeight
-            });
+            try {
+                chart.applyOptions({
+                    width: chartContainer.clientWidth,
+                    height: chartContainer.clientHeight
+                });
+            } catch (e) {}
         }
     });
 
@@ -63,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }).join("");
             }
         } catch (e) {
-            console.error("Error loading symbols:", e);
+            console.error("[AlgoPaperTrade] Error loading symbols:", e);
         }
     }
 
@@ -79,40 +285,45 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. WebSocket Connection for Real-Time Stream
     let socket;
     function connectWebSocket() {
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsUrl = `${protocol}//${window.location.host}/ws/stream`;
-        socket = new WebSocket(wsUrl);
+        try {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/ws/stream`;
+            socket = new WebSocket(wsUrl);
 
-        socket.onopen = () => {
-            console.log("[WebSocket] Connected to market stream");
-        };
+            socket.onopen = () => {
+                console.log("[WebSocket] Connected to market stream");
+            };
 
-        socket.onmessage = (event) => {
-            try {
-                const data = JSON.parse(event.data);
-                updateDashboard(data);
-            } catch (err) {
-                console.error("[WebSocket Error]", err);
-            }
-        };
+            socket.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    updateDashboard(data);
+                } catch (err) {
+                    console.error("[WebSocket Error]", err);
+                }
+            };
 
-        socket.onclose = () => {
-            console.warn("[WebSocket] Disconnected. Reconnecting in 3s...");
-            setTimeout(connectWebSocket, 3000);
-        };
+            socket.onclose = () => {
+                setTimeout(connectWebSocket, 3000);
+            };
+        } catch (e) {
+            console.error("[WebSocket Init Error]", e);
+        }
     }
 
     connectWebSocket();
 
-    // 4. UI Update Logic
+    // 4. Update UI Dashboard Elements
     function updateDashboard(data) {
         if (!data) return;
 
         if (data.forex_price) {
-            document.getElementById("forexPrice").innerText = `$${data.forex_price.toFixed(2)}`;
+            const el = document.getElementById("forexPrice");
+            if (el) el.innerText = `$${data.forex_price.toFixed(2)}`;
         }
         if (data.mcx_price) {
-            document.getElementById("mcxPrice").innerText = `₹${data.mcx_price.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+            const el = document.getElementById("mcxPrice");
+            if (el) el.innerText = `₹${data.mcx_price.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
         }
 
         if (data.mcx_source) {
@@ -131,33 +342,40 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        if (data.token_status) {
-            updateTokenBadges(data.token_status);
+        if (data.token_status && window.updateTokenBadges) {
+            window.updateTokenBadges(data.token_status);
         }
 
         if (data.timeframe) {
-            document.getElementById("chartTfLabel").innerText = data.timeframe;
+            const el = document.getElementById("chartTfLabel");
+            if (el) el.innerText = data.timeframe;
         }
         if (data.strategy) {
-            document.getElementById("activeStrategyBadge").innerText = data.strategy;
+            const el = document.getElementById("activeStrategyBadge");
+            if (el) el.innerText = data.strategy;
         }
 
         if (data.engine_status) {
             const status = data.engine_status;
-            document.getElementById("totalEquity").innerText = `₹${status.total_equity.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+            const eqEl = document.getElementById("totalEquity");
+            if (eqEl) eqEl.innerText = `₹${status.total_equity.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
             
             const rPnlEl = document.getElementById("realizedPnl");
-            rPnlEl.innerText = `₹${status.realized_pnl.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
-            rPnlEl.className = `value ${status.realized_pnl >= 0 ? 'profit' : 'loss'}`;
+            if (rPnlEl) {
+                rPnlEl.innerText = `₹${status.realized_pnl.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+                rPnlEl.className = `value ${status.realized_pnl >= 0 ? 'profit' : 'loss'}`;
+            }
 
             const autoBtn = document.getElementById("toggleAutoTradeBtn");
             const autoLabel = document.getElementById("autoTradeLabel");
-            if (data.auto_trade_enabled) {
-                autoBtn.className = "btn btn-toggle active";
-                autoLabel.innerText = "AUTO TRADING ON";
-            } else {
-                autoBtn.className = "btn btn-toggle inactive";
-                autoLabel.innerText = "AUTO TRADING OFF";
+            if (autoBtn && autoLabel) {
+                if (data.auto_trade_enabled) {
+                    autoBtn.className = "btn btn-toggle active";
+                    autoLabel.innerText = "AUTO TRADING ON";
+                } else {
+                    autoBtn.className = "btn btn-toggle inactive";
+                    autoLabel.innerText = "AUTO TRADING OFF";
+                }
             }
 
             const noPosMsg = document.getElementById("noPositionMsg");
@@ -165,42 +383,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (status.open_position) {
                 const pos = status.open_position;
-                noPosMsg.classList.add("hidden");
-                posDetails.classList.remove("hidden");
+                if (noPosMsg) noPosMsg.classList.add("hidden");
+                if (posDetails) posDetails.classList.remove("hidden");
 
-                document.getElementById("posInstrument").innerText = pos.instrument;
-                document.getElementById("posSideLots").innerText = `${pos.side} (${pos.lots} Lot)`;
-                document.getElementById("posEntryPrice").innerText = `₹${pos.entry_price.toFixed(2)}`;
+                const instEl = document.getElementById("posInstrument");
+                if (instEl) instEl.innerText = pos.instrument;
+                const sideEl = document.getElementById("posSideLots");
+                if (sideEl) sideEl.innerText = `${pos.side} (${pos.lots} Lot)`;
+                const entryEl = document.getElementById("posEntryPrice");
+                if (entryEl) entryEl.innerText = `₹${pos.entry_price.toFixed(2)}`;
 
                 const uPnlEl = document.getElementById("posUnrealizedPnl");
-                uPnlEl.innerText = `₹${pos.unrealized_pnl.toFixed(2)}`;
-                uPnlEl.className = `pnl-value ${pos.unrealized_pnl >= 0 ? 'profit' : 'loss'}`;
+                if (uPnlEl) {
+                    uPnlEl.innerText = `₹${pos.unrealized_pnl.toFixed(2)}`;
+                    uPnlEl.className = `pnl-value ${pos.unrealized_pnl >= 0 ? 'profit' : 'loss'}`;
+                }
 
                 const slText = pos.stop_loss ? `₹${pos.stop_loss.toFixed(2)}` : 'None';
                 const tpText = pos.take_profit ? `₹${pos.take_profit.toFixed(2)}` : 'None';
-                document.getElementById("posSlTp").innerText = `SL: ${slText} | TP: ${tpText}`;
+                const sltpEl = document.getElementById("posSlTp");
+                if (sltpEl) sltpEl.innerText = `SL: ${slText} | TP: ${tpText}`;
             } else {
-                noPosMsg.classList.remove("hidden");
-                posDetails.classList.add("hidden");
+                if (noPosMsg) noPosMsg.classList.remove("hidden");
+                if (posDetails) posDetails.classList.add("hidden");
             }
         }
 
         if (data.signal) {
             const banner = document.getElementById("signalBanner");
-            banner.innerText = data.signal.signal || "NEUTRAL";
-            banner.className = `signal-banner ${data.signal.signal || 'NEUTRAL'}`;
-            document.getElementById("signalReason").innerText = data.signal.reason || "";
+            if (banner) {
+                banner.innerText = data.signal.signal || "NEUTRAL";
+                banner.className = `signal-banner ${data.signal.signal || 'NEUTRAL'}`;
+            }
+            const reasonEl = document.getElementById("signalReason");
+            if (reasonEl) reasonEl.innerText = data.signal.reason || "";
         }
 
-        if (data.candles && data.candles.length > 0 && candleSeries) {
-            const formatted = data.candles.map(c => ({
-                time: c.time,
-                open: c.open,
-                high: c.high,
-                low: c.low,
-                close: c.close
-            }));
-            candleSeries.setData(formatted);
+        // Render Candles on chart
+        if (candleSeries && data.candles && data.candles.length > 0) {
+            try {
+                candleSeries.setData(data.candles);
+            } catch (err) {}
         }
 
         if (data.recent_logs) {
@@ -209,7 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderActivityLogs(logs) {
-        const container = document.getElementById("terminalLogsContainer");
+        const container = document.getElementById("activityLogsContainer");
         if (!container || !logs || logs.length === 0) return;
 
         container.innerHTML = logs.map(l => {
@@ -225,34 +448,6 @@ document.addEventListener("DOMContentLoaded", () => {
         container.scrollTop = container.scrollHeight;
     }
 
-    function updateTokenBadges(tokenStatus) {
-        const growwBadge = document.getElementById("growwTokenBadge");
-        const oandaBadge = document.getElementById("oandaTokenBadge");
-        if (!tokenStatus) return;
-
-        if (tokenStatus.groww && growwBadge) {
-            if (tokenStatus.groww.valid) {
-                growwBadge.className = "pill-badge badge-success";
-                growwBadge.innerText = "Active / Valid";
-            } else {
-                growwBadge.className = "pill-badge badge-error";
-                growwBadge.innerText = (tokenStatus.groww.message && tokenStatus.groww.message.includes("missing")) ? "Not Set" : "Invalid / Expired";
-            }
-            growwBadge.title = tokenStatus.groww.message || "";
-        }
-
-        if (tokenStatus.oanda && oandaBadge) {
-            if (tokenStatus.oanda.valid) {
-                oandaBadge.className = "pill-badge badge-success";
-                oandaBadge.innerText = "Active / Valid";
-            } else {
-                oandaBadge.className = "pill-badge badge-error";
-                oandaBadge.innerText = (tokenStatus.oanda.message && tokenStatus.oanda.message.includes("missing")) ? "Not Set" : "Invalid / Expired";
-            }
-            oandaBadge.title = tokenStatus.oanda.message || "";
-        }
-    }
-
     async function loadInitialStatus() {
         try {
             const res = await fetch("/api/status");
@@ -260,14 +455,14 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (data.config) {
                 const cfg = data.config;
-                document.getElementById("timeframeSelect").value = cfg.oanda.timeframe;
-                document.getElementById("strategySelect").value = cfg.strategy.selected_strategy;
-                document.getElementById("balanceInput").value = cfg.mcx.starting_balance;
-                document.getElementById("slInput").value = cfg.strategy.stop_loss_pct;
-                document.getElementById("tpInput").value = cfg.strategy.take_profit_pct;
-                document.getElementById("oandaToken").value = cfg.oanda.api_token;
-                document.getElementById("oandaAccount").value = cfg.oanda.account_id;
-                if (cfg.mcx.groww_access_token) {
+                if (document.getElementById("timeframeSelect")) document.getElementById("timeframeSelect").value = cfg.oanda.timeframe;
+                if (document.getElementById("strategySelect")) document.getElementById("strategySelect").value = cfg.strategy.selected_strategy;
+                if (document.getElementById("balanceInput")) document.getElementById("balanceInput").value = cfg.mcx.starting_balance;
+                if (document.getElementById("slInput")) document.getElementById("slInput").value = cfg.strategy.stop_loss_pct;
+                if (document.getElementById("tpInput")) document.getElementById("tpInput").value = cfg.strategy.take_profit_pct;
+                if (document.getElementById("oandaToken")) document.getElementById("oandaToken").value = cfg.oanda.api_token;
+                if (document.getElementById("oandaAccount")) document.getElementById("oandaAccount").value = cfg.oanda.account_id;
+                if (cfg.mcx.groww_access_token && document.getElementById("growwToken")) {
                     document.getElementById("growwToken").value = cfg.mcx.groww_access_token;
                 }
                 if (document.getElementById("liveMarketOnlyCheckbox") && cfg.live_market_only !== undefined) {
@@ -281,8 +476,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 await loadSymbols();
             }
 
-            if (data.token_status) {
-                updateTokenBadges(data.token_status);
+            if (data.token_status && window.updateTokenBadges) {
+                window.updateTokenBadges(data.token_status);
             }
 
             if (data.trade_history) {
@@ -300,54 +495,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadInitialStatus();
 
-    // Verify Tokens Action
+    // Attach Event Listeners defensively
     const verifyBtn = document.getElementById("verifyTokensBtn");
     if (verifyBtn) {
-        verifyBtn.addEventListener("click", async () => {
-            const feedback = document.getElementById("tokenVerifyFeedback");
-            feedback.style.display = "block";
-            feedback.className = "verify-feedback";
-            feedback.innerHTML = "<em>⏳ Testing credentials with live OANDA and Groww servers...</em>";
+        verifyBtn.addEventListener("click", window.handleVerifyTokens);
+    }
 
-            const payload = {
-                oanda_api_token: document.getElementById("oandaToken").value,
-                oanda_account_id: document.getElementById("oandaAccount").value,
-                oanda_environment: "practice",
-                groww_access_token: document.getElementById("growwToken").value
-            };
-
-            try {
-                const res = await fetch("/api/tokens/validate", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
-                const data = await res.json();
-                updateTokenBadges(data);
-
-                const oandaOk = data.oanda && data.oanda.valid;
-                const growwOk = data.groww && data.groww.valid;
-
-                let html = `<div><strong>OANDA:</strong> ${data.oanda.message}</div>`;
-                html += `<div><strong>Groww:</strong> ${data.groww.message}</div>`;
-
-                if (oandaOk && growwOk) {
-                    feedback.className = "verify-feedback success";
-                    html += `<div style="margin-top:6px; font-weight:bold;">🎉 Both live broker connections verified successfully!</div>`;
-                } else {
-                    feedback.className = "verify-feedback error";
-                    html += `<div style="margin-top:6px; font-weight:bold;">⚠️ Token check reported errors. See details above.</div>`;
-                }
-                feedback.innerHTML = html;
-            } catch (err) {
-                feedback.className = "verify-feedback error";
-                feedback.innerHTML = `<div>Verification failed: ${err}</div>`;
-            }
-        });
+    const saveBtn = document.getElementById("saveConfigBtn");
+    if (saveBtn) {
+        saveBtn.addEventListener("click", window.handleSaveConfig);
     }
 
     function renderTradeLogTable(trades) {
         const tbody = document.getElementById("tradeLogBody");
+        if (!tbody) return;
         if (!trades || trades.length === 0) {
             tbody.innerHTML = `<tr><td colspan="11" class="text-center">No trades logged yet. Engine running...</td></tr>`;
             return;
@@ -389,76 +550,45 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.trade_history) {
                 renderTradeLogTable(data.trade_history);
             }
-            if (data.token_status) {
-                updateTokenBadges(data.token_status);
+            if (data.token_status && window.updateTokenBadges) {
+                window.updateTokenBadges(data.token_status);
             }
         } catch (e) {}
     }, 3000);
 
-    // Save Config Form
-    document.getElementById("saveConfigBtn").addEventListener("click", async () => {
-        const balanceVal = parseFloat(document.getElementById("balanceInput").value) || 25000;
-        const selectedSym = document.getElementById("growwSymbol").value;
-        const payload = {
-            oanda_api_token: document.getElementById("oandaToken").value,
-            oanda_account_id: document.getElementById("oandaAccount").value,
-            oanda_environment: "practice",
-            groww_access_token: document.getElementById("growwToken").value,
-            groww_trading_symbol: selectedSym,
-            timeframe: document.getElementById("timeframeSelect").value,
-            selected_strategy: document.getElementById("strategySelect").value,
-            starting_balance: balanceVal,
-            stop_loss_pct: parseFloat(document.getElementById("slInput").value),
-            take_profit_pct: parseFloat(document.getElementById("tpInput").value),
-            live_market_only: document.getElementById("liveMarketOnlyCheckbox") ? document.getElementById("liveMarketOnlyCheckbox").checked : true,
-            enforce_market_hours: document.getElementById("enforceMarketHoursCheckbox") ? document.getElementById("enforceMarketHoursCheckbox").checked : true
-        };
-
-        try {
-            const res = await fetch("/api/config", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-            if (data.status === "SUCCESS") {
-                document.getElementById("totalEquity").innerText = `₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
-                document.getElementById("realizedPnl").innerText = "₹0.00";
-                document.getElementById("realizedPnl").className = "value neutral";
-                if (data.token_status) {
-                    updateTokenBadges(data.token_status);
-                }
-                
-                const growwStatus = payload.groww_access_token ? "Configured" : "Not Provided";
-                const modeStr = payload.live_market_only ? "Strict Live Only (Simulation Disabled)" : "Simulation Allowed";
-                alert(`✅ Contract & Settings Saved!\n\n• Contract: ${selectedSym}\n• Mode: ${modeStr}\n• Account Balance reset to: ₹${balanceVal.toLocaleString('en-IN', {minimumFractionDigits: 2})}\n• Groww Token: ${growwStatus}\n• Strategy: ${payload.selected_strategy}\n\nThe engine updated live without needing a restart!`);
-            }
-        } catch (err) {
-            alert("Failed to update settings: " + err);
-        }
-    });
-
     // Toggle Auto Trade
-    document.getElementById("toggleAutoTradeBtn").addEventListener("click", async () => {
-        try {
-            await fetch("/api/autotrade/toggle", { method: "POST" });
-        } catch (err) {}
-    });
+    const autoTradeBtn = document.getElementById("toggleAutoTradeBtn");
+    if (autoTradeBtn) {
+        autoTradeBtn.addEventListener("click", async () => {
+            try {
+                await fetch("/api/autotrade/toggle", { method: "POST" });
+            } catch (err) {}
+        });
+    }
 
     // Manual Trading Actions
-    document.getElementById("manualBuyBtn").addEventListener("click", async () => {
-        const lots = parseInt(document.getElementById("manualLots").value) || 1;
-        await triggerManualTrade("BUY", lots);
-    });
+    const buyBtn = document.getElementById("manualBuyBtn");
+    if (buyBtn) {
+        buyBtn.addEventListener("click", async () => {
+            const lots = parseInt(document.getElementById("manualLots")?.value) || 1;
+            await triggerManualTrade("BUY", lots);
+        });
+    }
 
-    document.getElementById("manualSellBtn").addEventListener("click", async () => {
-        const lots = parseInt(document.getElementById("manualLots").value) || 1;
-        await triggerManualTrade("SELL", lots);
-    });
+    const sellBtn = document.getElementById("manualSellBtn");
+    if (sellBtn) {
+        sellBtn.addEventListener("click", async () => {
+            const lots = parseInt(document.getElementById("manualLots")?.value) || 1;
+            await triggerManualTrade("SELL", lots);
+        });
+    }
 
-    document.getElementById("manualSquareOffBtn").addEventListener("click", async () => {
-        await triggerManualTrade("SQUARE_OFF", 1);
-    });
+    const sqBtn = document.getElementById("manualSquareOffBtn");
+    if (sqBtn) {
+        sqBtn.addEventListener("click", async () => {
+            await triggerManualTrade("SQUARE_OFF", 1);
+        });
+    }
 
     // Test Auto Signal Execution (Toggles between BUY and SELL)
     let nextSignalSide = "BUY";
